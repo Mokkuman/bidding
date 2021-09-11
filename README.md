@@ -13,10 +13,32 @@ After cloning the reposity and opening the project in VisualStudio Code. We'll s
 In the first part We have a folder named _bidding_ here is stored our project. And then I'm going to talk about de folder ***Scripts*** It's not always necessary having this folder but to avoid some issues It's better to have a virtual enviroment.
 Here is stored some scripts for emulate an eviroment and execute it.
 
+VisualStudio Code way
+----
+It's the easy way, after opening the project you need to find in the bottom bar somethink like _python_ and select the interpreter wich has a _bidding: venv_ write on it an select it. Or you can type _Ctrl + Shift + P_ and select the interpreter.
+
+It's common to not do this step, but I write it just in case.
+
+If you can do it then We have the same issue 🥴🥴
+
+Commands way
+----
+### With PowerShell
+Open a new terminal with _Ctrl + Shift + ñ_
+
+Type ***bidding\Scripts\Activate.bat***
+If it dont work. CRY...
+Naah 🤡🤡
+
+### CMD Terminal
+Here it's something curious in my case PowerShell doesn't work hahaha so if I write some instructions I need to change the _PowerShell_ terminal to a _cmd_ terminal (We do this just with typing _cmd_). 
+
 The way to execute this project we need to open a new terminal _Ctrl + Shift + ñ_. 
 
 And type ***bidding\Scripts\activate.bat*** 
 
-Here it's something curious in my case PowerShell doesn't work hahaha so if I write some instructions I need to change the _PowerShell_ terminal to a _cmd_ terminal (We do this just with typing _cmd_). A 
+Finally having activated our virtual environment we type 
 
-Then we have
+***python manage.py runserver*** And we'll have our project running on a local host that we can acceess just going to a favourite web browser and wirte on it http://127.0.0.1:8000/
+
+**NOTE: TO KILL THE PROCESS WE HAVE TO PUSH THIS KEYS IN THE TERMINAL _Ctrl + C_ **
