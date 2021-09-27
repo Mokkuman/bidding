@@ -3,23 +3,44 @@
 
 <html lang="en">
   <head>
-    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'store/style.css' %}"  type="text/css"/>
+    <link rel="stylesheet" href="{% static 'store/styleLayout.css' %}"  type="text/css"/>
 
   </head>
   <body>
     <header>
+      <a href="#" class="enlace">
+          <img src="{% static 'store/logo.png' %}"  alt="logo" class="logo">
+      </a>
       <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <span class="material-icons-outlined">
+            menu
+          </span>
+        </label>
+        
         <ul class="nav_links">
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Projects</a></li>
+          <li><a href="#">Product Listing</a></li>
+          <li><a href="#">Categories</a></li>
           <li><a href="#">About</a></li>
+          <!--Una vez teniendo los datos poner que si iniciado sesion accede a "PERFIL"
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Cart </a></li> Tambien el carrito xd, o podemos que si pueda 
+          guardar cosas pero nos debemos de apollar de las cookies de la pagina web
+          -->
         </ul>
+        <div class="buttons">
+          <a class="login" href="#"><button>Log in</button></a>
+          <a class="signup" href="#"><button>Sign up</button></a>
+        </div>
       </nav>
-      <a class="login" href="#"><button>Log in</button></a>
-      <a class="singUp" href="#"><button>Sign up</button></a>
     </header>
-    <div class="main">{% block body %}} {% endblock body %}</div>
+    <div class="main">{% block body %} {% endblock body %}</div>
   </body>
 </html>
