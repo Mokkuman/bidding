@@ -1,0 +1,31 @@
+.main{
+    color: black;
+    /*border: 3px solid white; for debugging*/
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    
+    padding: 0 2em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.pictures, .productDescription {
+    /*border: 3px solid lightblue; for debugging*/
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.productName, .price, .description, .category, .condition, .bidBtn {
+    padding: 1em;
+}
+
+.bid {
+    text-align: center;
+}
+
+.bidBtn {
+    background-color: #149414;
+}
