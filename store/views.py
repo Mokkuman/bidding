@@ -6,6 +6,12 @@ def index(request):
     #return HttpResponse("Hola pvtas")
     return render(request,"store/index.html")
 
+def productListing(request):
+    return HttpResponse("Products: ") #Solo es un ejemplo
+
+def categories(request):
+    return HttpResponse("Categories: ") #Solo es un ejemplo
+
 def goToProduct(request):
     try:
         dummyData = {

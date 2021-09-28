@@ -15,7 +15,7 @@
   </head>
   <body>
     <header>
-      <a href="#" class="enlace">
+      <a href="{% url 'index' %}" class="enlace">
           <img src="{% static 'store/logo.png' %}"  alt="logo" class="logo">
       </a>
       <nav>
@@ -27,9 +27,9 @@
         </label>
         
         <ul class="nav_links">
-          <li><a href="#">Product Listing</a></li>
-          <li><a href="#">Categories</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="{% url 'productListing' %}">Product Listing</a></li>
+          <li><a href="{% url 'categories' %}">Categories</a></li>
+          <li><a href="#">About</a></li><!--Tal vez ponerla en un footer-->
           <!--Una vez teniendo los datos poner que si iniciado sesion accede a "PERFIL"
           <li><a href="#">Profile</a></li>
           <li><a href="#">Cart </a></li> Tambien el carrito xd, o podemos que si pueda 
