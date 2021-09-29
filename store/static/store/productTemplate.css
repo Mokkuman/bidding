@@ -13,13 +13,14 @@
 }
 
 .pictures, .productDescription {
-    /*border: 3px solid lightblue; for debugging*/
+    /*border: 3px solid lightblue; */
     margin-left: 0.5em;
     margin-right: 0.5em;
+    margin-top: 0.5em;
 }
 
-.productName, .price, .description, .category, .condition, .bidBtn {
-    padding: 1em;
+.productName, .price, .description, .category, .condition {
+    padding: 0.5em;
 }
 
 .bid {
@@ -28,4 +29,5 @@
 
 .bidBtn {
     background-color: #149414;
+    padding: 1em;
 }

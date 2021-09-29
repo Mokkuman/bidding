@@ -1,0 +1,53 @@
+{% extends 'store/layout.html' %} 
+{% load static %}   
+
+{% block cssPath %} 
+<link rel="stylesheet" href="{% static 'store/settingsTemplate.css' %}"  type="text/css"/>
+{% endblock cssPath %}
+
+{% block title %}Settings{% endblock title%}
+
+{% block body %}
+    <div class="container">
+        <div class="settingsNavBar">
+            <div class="profilePicture">
+                <img src="{% static 'store/profileIcon.png' %}" alt="Profile Image" id="profileImage" width="200px" />
+            </div>
+
+            <h1 id="name">NAME</h1>
+            <h1 onclick="toggle('updateProfile')">Update Profile</h1>
+            <h1 onclick="toggle('myBids')">My Bids</h1>
+            <h1 onclick="toggle('sellProducts')">Sell Products</h1>
+        </div>
+
+        <div class="updateProfile" id="updateProfile">
+            <h2>Full Name</h2>
+            <h2>Email</h2>
+            <h2>User ID</h2>
+            <h2>Address</h2>
+            <h2>Password</h2>
+        </div>
+
+        <div id="myBids">
+            <h1>MY BIDS</h1>
+        </div>
+
+        <div id="sellProducts">
+            <h1>SELL PRODUCTS</h1>
+        </div>
+    </div>
+
+    <script>
+        let previousTemplateID = 'updateProfile';
+        function toggle(currentTemplateID) {
+            let previousTemplate = document.getElementById(previousTemplateID);
+            previousTemplate.style.display = "none";
+
+            currentTemplate = document.getElementById(currentTemplateID);
+            currentTemplate.style.display = "block";
+            
+            previousTemplateID = currentTemplateID;
+        }
+    </script>
+
+{% endblock body %}
