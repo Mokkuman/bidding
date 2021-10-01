@@ -10,8 +10,55 @@ header{
     text-decoration: none;
 }
 
+body{
+  min-height: 100vh; 
+  margin: 0; 
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: #dadada;;
+}
+
+footer {
+  /*background: rgba(1, 31, 46, 0.75);*/
+  background: #073b4c;
+}
+.navFooter{
+    float: left;
+    padding: 10px 25px 30px 5px;
+    box-sizing: border-box;
+}
+
+.navFooter ul{
+    list-style: none;
+    color: #ffd166;
+}
+
+.navFooter ul li.head,.navFooter ul li.head a.faq {
+  font-size: 20px;
+  height: 15px;
+  padding: 5px;
+  font-weight:bolder;
+}
+
+.navFooter ul .content li {
+  font-size: 14px;
+  padding: 20px 0 0 5px;
+}
+
+.navFooter ul .content p{
+  white-space:pre-line;
+  text-align:inherit;
+  font-size: 14px;
+  padding: 0 0 0 5px;
+}
+
+img.socialImg{
+  width: 15px;
+  padding: none;
+}
+
 nav{
-    background-color: #b2ff9e;
+    background-color: #06d6a0;/*#b2ff9e;*/
     height: 67px;
     width: 100%;
     font-family: 'Roboto', sans-serif;
@@ -46,19 +93,19 @@ nav ul li a{
     transition: all 0.3s ease 0s;
 }
 li a.active, li a:hover{
-    background: #1DD3B0;
+    background: #ffd166;/*#1DD3B0;*/
     transition: .5s;
 }
 button{
     padding: 9px 25px;
     border: none;
     border-radius: 25px;
-    background-color: rgba(0,136,169, 1);
+    background-color: #ef476f;/*rgba(0,136,169, 1);*/
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
 button:hover{
-    background-color: rgba(0,136,169, 0.6);
+    background-color: #ffd166;/*rgba(0,136,169, 0.6);*/
 }
 .checkbtn{
     font-size: 30px;

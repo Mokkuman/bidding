@@ -43,5 +43,74 @@
       </nav>
     </header>
     <div class="main">{% block body %} {% endblock body %}</div>
+
+    <footer>
+        <div class="navFooter">
+            <ul>
+                <li class="head">Any Suggestions? Tell us!</li>
+                <div class="content">
+                    <li>Our e-mail</li>
+                    <li>Call us!</li>
+                    <li>Text me ;)</li>
+                </div>
+            </ul>
+        </div>
+    
+        <div class="navFooter">
+            <ul>
+                <li class="head">Follow us</li>
+                <div class="content">
+                    <li>
+                        <a href="{% url 'index' %}" class="social">
+                            <img src="{% static 'store/fb.png' %}"  alt="socialImg" class="socialImg">
+                        </a>
+                         Facebook
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}" class="social">
+                            <img src="{% static 'store/insta.png' %}"  alt="socialImg" class="socialImg">
+                        </a>
+                        Instagram
+                    </li>
+                    <li>                       
+                        <a href="{% url 'index' %}" class="social">
+                            <img src="{% static 'store/twit.png' %}"  alt="socialImg" class="socialImg">
+                        </a>
+                        Twitter
+                    </li>
+                </div>
+            </ul>
+        </div>
+    
+        <div class="navFooter">
+            <ul>
+                <li class="head">More about us</li>
+                <div class="content">
+                    <p>
+                    Hola amigos. Como estamos jskaja. Los creadores
+                    De esta pagina están bien mec0s sinceramente
+                    </p>
+                </div>
+            </ul>
+        </div>
+    
+        <div class="navFooter">
+            <ul>
+                <li class="head">Boring stuff</li>
+                <div class="content">
+                    <p>
+                    Copyright &copy; 2021 
+                    Todos los derechos reservados
+                    </p>
+                </div>
+            </ul>
+        </div>
+
+        <div class="navFooter">
+            <ul>
+                <li class="head">FAQ</li>
+            </ul>
+        </div>
+    </footer>
   </body>
 </html>
