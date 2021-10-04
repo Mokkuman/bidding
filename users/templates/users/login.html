@@ -1,0 +1,15 @@
+{% extends 'core/layout.html' %}
+
+{% block title %}
+    LOGIN
+{% endblock title %}
+
+{% block body %}
+     <form method = "POST" action="{% url 'users:loginV' %}" >
+        {% csrf_token %}
+        <input type = "text" name="email" placeholder="email@mail.com" />
+        <input type = "password" name="password" placeholder="password" />
+
+        <input type="submit" value="Login" />
+    </form>
+{% endblock body %}

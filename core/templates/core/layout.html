@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'store/styleLayout.css' %}"  type="text/css"/>
+    <link rel="stylesheet" href="{% static 'core/styleLayout.css' %}"  type="text/css"/>
     {% block cssPath %}{% endblock cssPath %}
 
   </head>
@@ -27,8 +27,8 @@
         </label>
         
         <ul class="nav_links">
-          <li><a href="{% url 'productListing' %}">Product Listing</a></li>
-          <li><a href="{% url 'categories' %}">Categories</a></li>
+          <li><a href="{% url 'store:productListing' %}">Product Listing</a></li>
+          <li><a href="{% url 'store:categories' %}">Categories</a></li>
           <li><a href="#">About</a></li><!--Tal vez ponerla en un footer-->
           <!--Una vez teniendo los datos poner que si iniciado sesion accede a "PERFIL"
           <li><a href="#">Profile</a></li>
@@ -37,7 +37,7 @@
           -->
         </ul>
         <div class="buttons">
-          <a class="login" href="#"><button>Log in</button></a>
+          <a class="login" href="{% url 'users:loginV' %}"><button>Log in</button></a>
           <a class="signup" href="#"><button>Sign up</button></a>
         </div>
       </nav>

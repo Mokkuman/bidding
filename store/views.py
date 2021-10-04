@@ -2,9 +2,6 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
 # Create your views here.
-def index(request):
-    #return HttpResponse("Hola pvtas")
-    return render(request,"store/index.html")
 
 def productListing(request):
     return HttpResponse("Products: ") #Solo es un ejemplo

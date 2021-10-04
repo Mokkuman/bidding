@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'store', #app creada
-    'users',
+    'store', #app creada para los productos
+    'users', #app creada para los usuarios
+    'core', #solo esta el home aca y el layout que es la base de nuestro html
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
