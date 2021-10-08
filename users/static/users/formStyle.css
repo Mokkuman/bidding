@@ -1,0 +1,9 @@
+.form{
+    /*border: 3px solid black;*/
+    text-align: center;
+    margin: 1em;
+}
+
+#submitBtn{
+    margin-top: 1em;
+}

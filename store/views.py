@@ -26,6 +26,3 @@ def goToProduct(request):
         return render(request, "store/productTemplate.html",{
             'productFound':False
         })
-
-def goToSettings(request):
-    return render(request, "store/settingsTemplate.html")

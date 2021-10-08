@@ -9,5 +9,4 @@ urlpatterns = [
     path("", views.productListing,name="productListing"),
     path("categories",views.categories,name="categories"),
     path("productXXX", views.goToProduct, name="productPage"),
-    path("settings", views.goToSettings, name="settingsPage")
 ]
