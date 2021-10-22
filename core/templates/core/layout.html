@@ -44,72 +44,48 @@
     </header>
     <div class="main">{% block body %} {% endblock body %}</div>
 
-    <footer>
-        <div class="navFooter">
-            <ul>
-                <li class="head">Any Suggestions? Tell us!</li>
-                <div class="content">
-                    <li>Our e-mail</li>
-                    <li>Call us!</li>
-                    <li>Text me ;)</li>
-                </div>
-            </ul>
-        </div>
-    
-        <div class="navFooter">
-            <ul>
-                <li class="head">Follow us</li>
-                <div class="content">
-                    <li>
-                        <a href="{% url 'index' %}" class="social">
-                            <img src="{% static 'store/fb.png' %}"  alt="socialImg" class="socialImg">
-                        </a>
-                         Facebook
-                    </li>
-                    <li>
-                        <a href="{% url 'index' %}" class="social">
-                            <img src="{% static 'store/insta.png' %}"  alt="socialImg" class="socialImg">
-                        </a>
-                        Instagram
-                    </li>
-                    <li>                       
-                        <a href="{% url 'index' %}" class="social">
-                            <img src="{% static 'store/twit.png' %}"  alt="socialImg" class="socialImg">
-                        </a>
-                        Twitter
-                    </li>
-                </div>
-            </ul>
-        </div>
-    
-        <div class="navFooter">
-            <ul>
-                <li class="head">More about us</li>
-                <div class="content">
-                    <p>
-                    Hola amigos. Como estamos jskaja. Los creadores
-                    De esta pagina están bien mec0s sinceramente
-                    </p>
-                </div>
-            </ul>
-        </div>
-    
-        <div class="navFooter">
-            <ul>
-                <li class="head">Boring stuff</li>
-                <div class="content">
-                    <p>
-                    Copyright &copy; 2021 
-                    Todos los derechos reservados
-                    </p>
-                </div>
-            </ul>
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>Any suggestions? Tell Us!</h3>
+            <p class="footer-links">
+                <i>Our e-mail</i>
+                |
+                <i>Call us!</i>
+                |
+                <i>Text us ;)</i>
+            </p>
+
+            <p class="footer-Copyright">Copyright &copy; 2021<br>Todos los derechos reservados</br></p>
         </div>
 
-        <div class="navFooter">
-            <ul>
-                <li class="head">FAQ</li>
-            </ul>
+        <div class="footer-center">
+            <div>
+                <h3>More About Us</h3>
+                <p>kjasdkjakdajdksadjakdjakdaksadlkdlakdla<br>
+                jsdajdksajkldjaldkajdkajdakdajkldakjd</br></p>
+            </div>
+
+            <div class="footer-icons">
+                <a href="{% url 'index' %}" class="social">
+                    <img src="{% static 'store/fb.png' %}"  alt="socialImg" class="socialImg">
+                </a>
+                <a href="{% url 'index' %}" class="social">
+                    <img src="{% static 'store/insta.png' %}"  alt="socialImg" class="socialImg">
+                </a>
+                <a href="{% url 'index' %}" class="social">
+                    <img src="{% static 'store/twit.png' %}"  alt="socialImg" class="socialImg">
+                 </a>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+            <h3>FAQ</h3>
+            <i>¿Prueba dedakjdkajdklsad?</i>
+            <br></br>
+            <i>¿Prueba dedakjdkajdklsad?</i>
+            <br></br>
+            <i>¿Prueba dedakjdkajdklsad?</i>
         </div>
     </footer>
   </body>
