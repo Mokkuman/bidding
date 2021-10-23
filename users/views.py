@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from store.models import User
+#from store.models import User
+from .models import User
 from .forms import UserForm
 from django.shortcuts import render, redirect
 
@@ -17,6 +18,7 @@ def signup(response):
     else:
         theForm = UserForm()
     return render(response, "users/signup.html", {"form":theForm})
+    
 
 def goToSettings(request):
     return render(request, "users/settingsTemplate.html")

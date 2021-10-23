@@ -36,36 +36,4 @@ class Product(models.Model):
     def getCondition(self):
         return self.condition
 
-class User(models.Model):
-   # IDUser = models.IntegerField()
-    firstName = models.CharField(max_length=100)
-    lastName = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    password = models.CharField(max_length=50)
-    adress = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.firstName + self.lastName
-    
-    # def getID(self):
-    #     return self.IDUser
-
-    def getEmail(self):
-        return self.email
-    
-    def getPassword(self):
-        return self.password
-
-    def getAdress(self):
-        return self.adress
-
-# class Admin(models.Manager):
-#     name = models.CharField(max_length=50)
-#     password = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return self.name
-    
-#     def getPassword(self):
-#         return self.password
 
