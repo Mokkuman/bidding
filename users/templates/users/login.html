@@ -5,11 +5,10 @@
 {% endblock title %}
 
 {% block body %}
+    {{msg}}
      <form method = "POST" action="{% url 'users:loginV' %}" >
         {% csrf_token %}
-        <input type = "text" name="email" placeholder="email@mail.com" />
-        <input type = "password" name="password" placeholder="password" />
-
-        <input type="submit" value="Login" />
+        {{form.as_p}}
+        <button id="btnSubmit" type="submit" value="Login"> Login</button>
     </form>
 {% endblock body %}

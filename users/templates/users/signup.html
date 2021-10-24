@@ -15,7 +15,7 @@
         <form method="POST" action="{% url 'users:signup' %}" >
             {% csrf_token %}
             {{ form | crispy }}
-            <input id="submitBtn" type="submit" value="Create User"/>
+            <button id="submitBtn" type="submit" value="CreateUser"> Create User</button>
         </form>
     </div>
 {% endblock body %}
