@@ -2,7 +2,7 @@ from django.shortcuts import render
 #from store.models import User
 from .forms import UserForm, LoginForm
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def loginV(request):
@@ -33,5 +33,9 @@ def signup(request):
     return render(request, "users/signup.html", {"form":theForm})
     
 
-def goToSettings(request):
-    return render(request, "users/settingsTemplate.html")
+def goToProfile(request):
+    return render(request, "users/myProfile.html")
+
+def logoutUser(request):
+    logout(request)
+    return redirect("users:loginV")
