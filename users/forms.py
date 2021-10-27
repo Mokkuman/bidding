@@ -15,3 +15,8 @@ class LoginForm(forms.Form):
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     fields = ['email', 'password']
+
+class UpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('firstName','lastName','city','state',)

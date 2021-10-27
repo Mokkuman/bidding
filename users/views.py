@@ -1,7 +1,7 @@
 from django.shortcuts import render
 #from store.models import User
-from .forms import UserForm, LoginForm
-from django.shortcuts import render, redirect
+from .forms import UpdateForm, UserForm, LoginForm
+from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -32,10 +32,27 @@ def signup(request):
         theForm = UserForm()
     return render(request, "users/signup.html", {"form":theForm})
     
-
-def goToProfile(request):
-    return render(request, "users/myProfile.html")
-
 def logoutUser(request):
     logout(request)
     return redirect("users:loginV")
+
+def goToProfile(request):
+    if request.method == "POST":
+        return redirect('users:updateProfile')
+    return render(request, "users/myProfile.html")
+
+def updateProfile(request):
+    if request.method == "POST":
+        if 'UpdateProfile' in request.POST:
+            theForm = UpdateForm(request.POST,instance=request.user)
+            theForm.actual_user=request.user 
+            if theForm.is_valid():
+                theForm.save()
+                return redirect('users:myProfile')
+        else:
+            return redirect('users:myProfile')
+    else:
+        data={'firstName':request.user.firstName,'lastName':request.user.lastName,
+            'city':request.user.city,'state':request.user.state}
+        theForm = UpdateForm(None,initial=data)
+        return render(request,"users/updateProfile.html",{"form":theForm})
