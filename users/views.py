@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .forms import UpdateForm, UserForm, LoginForm
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def loginV(request):
@@ -35,11 +36,13 @@ def signup(request):
 def logoutUser(request):
     logout(request)
     return redirect("users:loginV")
-
+@login_required
 def goToProfile(request):
-    if request.method == "POST":
-        return redirect('users:updateProfile')
-    return render(request, "users/myProfile.html")
+    # if request.method == "POST":
+    #     return redirect('users:updateProfile')
+    curret_user = request.user
+    #userName = curret_user.lastName
+    return render(request, "users/myProfile.html",{'user':curret_user})
 
 def updateProfile(request):
     if request.method == "POST":

@@ -9,8 +9,17 @@
     
 {% block body %}
     <h1>My Profile</h1>
-    <h1>Hola, {{user.firstName|default:'mi estimado'}}!<h1></h1>
+    {% comment %} <h1>Hola, {{user.firstName|default:'mi estimado'}}!<h1></h1> {% endcomment %}
+    <div class="infoContainer">
+            <p>Nombre: {{user.firstName}}</p>
+            <p>Apellido: {{user.lastName}}</p>
+            <p>Correo: {{user.email}}</p>
+            <p>Ciudad: {{user.city}}</p>
+            <p>Estado: {{user.state}}</p>
+    </div>
     <div class="button">
-        <a class="modificar" href="{% url 'users:updateProfile' %}"><button>Modificar perfil</button></a>
+        <a class="modificar" href="{% url 'users:updateProfile' %}">
+            <button>Modificar perfil</button>
+        </a>
     </div>
 {% endblock body %}
