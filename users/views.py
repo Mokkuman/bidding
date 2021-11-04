@@ -1,6 +1,6 @@
 from django.shortcuts import render
 #from store.models import User
-from .forms import UpdateForm, UserForm, LoginForm
+from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -36,6 +36,7 @@ def signup(request):
 def logoutUser(request):
     logout(request)
     return redirect("users:loginV")
+
 @login_required
 def goToProfile(request):
     # if request.method == "POST":
@@ -59,3 +60,19 @@ def updateProfile(request):
             'city':request.user.city,'state':request.user.state}
         theForm = UpdateForm(None,initial=data)
         return render(request,"users/updateProfile.html",{"form":theForm})
+
+def updateMoney(request):
+    if request.method=="POST":
+        if "UpdateMoney" in request.POST:
+            theForm = UpdateMoneyForm(request.POST,instance=request.user)
+            mon1 = request.user.money
+            if theForm.is_valid():
+                mon = theForm.cleaned_data['money']
+                theForm.actual_user = request.user
+                theForm.actual_user.money = mon1 + mon
+                theForm.save()
+                return redirect('users:myProfile')
+        else:
+            return redirect('users:myProfile')
+    theForm = UpdateMoneyForm()
+    return render(request,"users/addMoney.html",{"form":theForm})

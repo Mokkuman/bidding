@@ -40,6 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=200)
     city = models.CharField(max_length=64, blank = True)
     state = models.CharField(max_length=64,blank = True)
+    money = models.PositiveIntegerField(blank=True,default=0)
     
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default=False) 
@@ -64,3 +65,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     def getState(self):
         return self.state
+
+    def getMoney(self):
+        return self.money

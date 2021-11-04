@@ -1,0 +1,23 @@
+{% extends 'core/layout.html' %} 
+{% load static %}   
+
+{% block cssPath %} 
+
+{% endblock cssPath %}
+
+{% block title %}Configuracion{% endblock title%}
+    
+{% block body %}
+    <h1>Añade créditos a tu cuenta</h1>
+    <p>Tu dinero actual: {{user.money}}</p>
+    <div class="form">
+        <form method="POST" action="{% url 'users:addMoney' %}" >
+            {% csrf_token %}
+            {{form.as_p}}
+            <button id="submitBtn" type="submit" name="UpdateMoney">Añadir dinero</button>
+            <a class="regresar" href="{% url 'users:myProfile' %}">
+                <button>Cancelar</button>
+            </a>
+        </form>
+    </div>
+{% endblock body %}
