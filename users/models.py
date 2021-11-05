@@ -1,4 +1,5 @@
 from django.db import models
+#from store.models import Product, BidProduct
 
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
@@ -42,6 +43,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     state = models.CharField(max_length=64,blank = True)
     money = models.PositiveIntegerField(blank=True,default=0)
     
+    #new
+    products = models.ManyToManyField("store.StockProduct", blank=True)
+
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default=False) 
     #tal vez necesitemos enviar un correo de confirmacion idk xd
@@ -52,7 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     
     def __str__(self):
-        return self.firstName + self.lastName
+        return self.firstName + " " + self.lastName
 
     def getEmail(self):
         return self.email
@@ -68,3 +72,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def getMoney(self):
         return self.money
+
+class Bid(models.Model):
+    userID = models.IntegerField()
+    userBid = models.PositiveBigIntegerField()
+    #relación: 1 a muchos para BidProduct
+    product = models.ForeignKey("store.BidProduct", on_delete=models.CASCADE) 
