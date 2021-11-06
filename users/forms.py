@@ -12,9 +12,9 @@ class UserForm(UserCreationForm):
         }
 
 class LoginForm(forms.Form):
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'email'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-    fields = ['email', 'password']
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'E-mail'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña'}))
+    fields = ['e', 'password']
 
 class UpdateForm(forms.ModelForm):
     class Meta:

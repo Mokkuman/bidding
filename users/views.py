@@ -9,15 +9,15 @@ from django.contrib.auth.decorators import login_required
 def loginV(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
-        email = form.cleaned_data['email']
-        password = form.cleaned_data['password']
+        email = form.cleaned_data['E-mail']
+        password = form.cleaned_data['Contraseña']
         user = authenticate(request, email=email,password=password)
         if user is not None:
             if user.is_active:
                 login(request,user)
                 return redirect('core:index')
         else: #User doesn't exist
-            return render(request,"users/login.html",{"form":form,"msg":'no existe el usuario'})
+            return render(request,"users/login.html",{"form":form,"msg":'No existe el usuario'})
             
     return render(request,"users/login.html",{"form":form})
         
@@ -55,7 +55,7 @@ def updateProfile(request):
         else:
             return redirect('users:myProfile')
     else:
-        data={'firstName':request.user.firstName,'lastName':request.user.lastName,
-            'city':request.user.city,'state':request.user.state}
+        data={'Nombre':request.user.firstName,'Apellido':request.user.lastName,
+            'Ciudad':request.user.city,'Estado':request.user.state}
         theForm = UpdateForm(None,initial=data)
         return render(request,"users/updateProfile.html",{"form":theForm})
