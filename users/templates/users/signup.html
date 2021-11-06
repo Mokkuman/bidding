@@ -11,11 +11,16 @@
 {% endblock title %}    
 
 {% block body %}
-    <div class="form">
-        <form method="POST" action="{% url 'users:signup' %}" >
-            {% csrf_token %}
-            {{ form | crispy }}
-            <button id="submitBtn" type="submit" value="CreateUser"> Create User</button>
-        </form>
+    <div class="container-signup">
+        <div class="wrap-signup">
+            <div class="intro-text">
+                <h1>CREAR UNA CUENTA</h1>
+            </div>
+            <form method="POST" action="{% url 'users:signup' %}" >
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button id="submitBtn" type="submit" value="CreateUser"> Create User</button>
+            </form>
+        </div>
     </div>
 {% endblock body %}

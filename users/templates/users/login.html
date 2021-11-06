@@ -1,4 +1,9 @@
 {% extends 'core/layout.html' %}
+{% load static %}
+
+{% block cssPath %} 
+    <link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
+{% endblock cssPath %}
 
 {% block title %}
     LOGIN
@@ -6,9 +11,30 @@
 
 {% block body %}
     {{msg}}
-     <form method = "POST" action="{% url 'users:loginV' %}" >
-        {% csrf_token %}
-        {{form.as_p}}
-        <button id="btnSubmit" type="submit" value="Login"> Login</button>
-    </form>
+    <div class="container-login">
+        <div class="wrap-login">
+        <form method = "POST" action="{% url 'users:loginV' %}" >
+            {% csrf_token %}
+            <div class="wrap-login2">
+                <span class="welcome-title"> Bienvenido </span>
+                <p> que chingue su madre ManuHeRo .i. </p>
+                <div class="UserEmail">
+                    {{form.email}}
+                </div>
+                <div class="UserPassword">
+                    {{form.password}}
+                </div>
+                <div class="wrap-button">
+                    <div class="login-button">
+                        <button id="btnSubmit" type="submit" value="Login"> Login</button>
+                    </div>
+                </div>
+                <div class="signup-link">
+                    <span class="signup-registry">¿No estas registrado?, </span>
+                    <a class="signup-text" href="{% url 'users:signup' %}">¡Registrate aqui!</a>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
 {% endblock body %}
