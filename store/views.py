@@ -3,11 +3,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def productListing(request):
-    return HttpResponse("Products: ") #Solo es un ejemplo
-
-def categories(request):
-    return HttpResponse("Categories: ") #Solo es un ejemplo
+def cart(request):
+    return HttpResponse("Carrito ") #Solo es un ejemplo
 
 def goToProduct(request):
     try:

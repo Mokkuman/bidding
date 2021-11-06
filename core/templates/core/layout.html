@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-      rel="stylesheet">
+      rel="stylesheet">   
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'core/styleLayout.css' %}"  type="text/css"/>
     {% block cssPath %}{% endblock cssPath %}
@@ -27,14 +27,24 @@
         </label>
         
         <ul class="nav_links">
-          <li><a href="{% url 'store:productListing' %}">Product Listing</a></li>
-          <li><a href="{% url 'store:categories' %}">Categories</a></li>
-          <li><a href="#">About</a></li><!--Tal vez ponerla en un footer-->
-          <!--Una vez teniendo los datos poner que si iniciado sesion accede a "PERFIL"
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Cart </a></li> Tambien el carrito xd, o podemos que si pueda 
-          guardar cosas pero nos debemos de apollar de las cookies de la pagina web
-          -->
+          
+          {% if user.is_authenticated %}
+            <li><a href="#"> Subir</a></li>
+            <li><a href="#">Mis productos</a></li>                        
+            <li><a href="#">Lista de deseos</a></li>
+            <li><a href="{% url 'store:cart' %}" id="iconRef">
+              <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
+            </a></li>
+            <li><a href="#" id="iconRef"> 
+              <span id="iconImg" class="material-icons-outlined">notifications</span>
+            </a></li>
+          {% else %}
+            <li><a href="#">Lista de deseos</a></li>
+            <li><a href="{% url 'store:cart' %}" id="iconRef">
+              <span id = "iconImg" class="material-icons-outlined">shopping_cart</span>
+            </a></li>
+          {% endif %}
+
         </ul>
         <div class="buttons">
           {% if user.is_authenticated %}
@@ -47,6 +57,8 @@
         </div>
       </nav>
     </header>
+
+
     <div class="main">{% block body %} {% endblock body %}</div>
 
     <footer class="footer-distributed">
