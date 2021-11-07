@@ -26,3 +26,4 @@ def goToProduct(request):
 
 def uploadProduct(request):
     return render(request,"store/uploadProduct.html")
+

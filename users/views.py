@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 def loginV(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
-        email = form.cleaned_data['E-mail']
-        password = form.cleaned_data['Contraseña']
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password']
         user = authenticate(request, email=email,password=password)
         if user is not None:
             if user.is_active:
