@@ -1,9 +1,136 @@
-.form{
-    /*border: 3px solid black;*/
-    text-align: center;
-    margin: 1em;
+.wrap-button {
+    width: 50%;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 0 auto;
 }
 
-#submitBtn{
-    margin-top: 1em;
+.login-button {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    transition: all .4s;
+    background: linear-gradient(#a99087, #bd9897);
+
+}
+
+#btnSubmit{
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    height: 50px;
+    outline: none !important;
+    border: none;
+    background: 0 0;
+    margin: 0;
+    color:black;
+    width: 100%;
+}
+
+.container-login {
+    width: 90%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.wrap-login {
+    width: 390px;
+    background-color: #bea5a5;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 77px 55px 33px 55px;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrap-login2 {
+    text-align: center;
+}
+
+.welcome-title {
+    color: #bebea5; 
+    font-size: 50px; 
+    text-align: center; 
+    display: block;
+}
+
+.wrap-login2 input {
+    outline: none;
+    border: none;
+    display: inline-block;
+}
+
+.wrap-login2 p {
+    color: black;
+    /*text-transform: uppercase;*/
+    font-size: 35px;
+}
+
+.signup-link {
+    padding-top: 60px;
+    text-align: center;
+}
+
+.signup-registry {
+    font-size: 18px;
+    line-height: 1.4;
+    color: #073b4c;
+}
+
+/*.signup-link a, a:hover {
+    text-decoration: none;
+    color: inherit;
+}*/
+
+.signup-text {
+    font-size: 18px;
+    color: #061a20;
+}
+
+a {
+    margin: 0;
+    transition: all .4s;
+    touch-action: manipulation;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #a56e6e
+}
+
+#id_email {
+    width: 100%;
+    font-size: 20px;
+    border-bottom: 2px solid #adadad;
+    margin-bottom: 37px;
+    background: transparent;
+}
+
+#id_password {
+    width: 100%;
+    font-size: 20px;
+    border-bottom: 2px solid #adadad;
+    margin-bottom: 37px;
+    background: transparent;
+}
+
+
+/* INICIO DE ESTILADO PARA EL SIGN UP */
+.container-signup {
+    text-align: center;
+    margin: 1em;
+    
+}
+
+#hint_id_password1 {
+    color: navajowhite;
 }

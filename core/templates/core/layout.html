@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-      rel="stylesheet">
+      rel="stylesheet">   
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'core/styleLayout.css' %}"  type="text/css"/>
     {% block cssPath %}{% endblock cssPath %}
@@ -27,47 +27,59 @@
         </label>
         
         <ul class="nav_links">
-          <li><a href="{% url 'store:productListing' %}">Lista de Productos</a></li>
-          <li><a href="{% url 'store:categories' %}">Categorías</a></li>
-          <li><a href="#">Acerca de</a></li><!--Tal vez ponerla en un footer-->
-          <!--Una vez teniendo los datos poner que si iniciado sesion accede a "PERFIL"
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Cart </a></li> Tambien el carrito xd, o podemos que si pueda 
-          guardar cosas pero nos debemos de apollar de las cookies de la pagina web
-          -->
+          
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'store:uploadProduct' %}"> Subir</a></li>
+            <li><a href="{% url 'users:myProducts' %}">Mis productos</a></li>                        
+            <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
+            <li><a href="{% url 'store:cart' %}" id="iconRef">
+              <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
+            </a></li>
+            <li><a href="{% url 'users:notifications' %}" id="iconRef"> 
+              <span id="iconImg" class="material-icons-outlined">notifications</span>
+            </a></li>
+          {% else %}
+            <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
+            <li><a href="{% url 'store:cart' %}" id="iconRef">
+              <span id = "iconImg" class="material-icons-outlined">shopping_cart</span>
+            </a></li>
+          {% endif %}
+
         </ul>
         <div class="buttons">
           {% if user.is_authenticated %}
-            <a class="login" href="{% url 'users:logout' %}"><button>Cerrar sesión</button></a>
-            <a class="signup" href="{% url 'users:myProfile' %}"><button>Mi Perfil</button></a>
+            <a class="login" href="{% url 'users:logout' %}"><button>Log out</button></a>
+            <a class="signup" href="{% url 'users:myProfile' %}"><button>My Profile</button></a>
           {% else %}
-            <a class="login" href="{% url 'users:loginV' %}"><button>Iniciar sesión</button></a>
-            <a class="signup" href="{% url 'users:signup' %}"><button>Registrarse</button></a>
+            <a class="login" href="{% url 'users:loginV' %}"><button>Log in</button></a>
+            <a class="signup" href="{% url 'users:signup' %}"><button>Sign up</button></a>
           {% endif %}
         </div>
       </nav>
     </header>
+
+
     <div class="main">{% block body %} {% endblock body %}</div>
 
     <footer class="footer-distributed">
         <div class="footer-left">
-            <h3>Tienes alguna sugerencia? Cuentanos!</h3>
+            <h3>Any suggestions? Tell Us!</h3>
             <p class="footer-links">
-                <i>Nuestro e-mail</i>
+                <i>Our e-mail</i>
                 |
-                <i>Llámanos!</i>
+                <i>Call us!</i>
                 |
-                <i>Escríbenos ;)</i>
+                <i>Text us ;)</i>
             </p>
 
-            <p class="footer-Copyright">Copyright &copy; 2021<br>Todos los derechos reservados.</br></p>
+            <p class="footer-Copyright">Copyright &copy; 2021<br>Todos los derechos reservados</br></p>
         </div>
 
         <div class="footer-center">
             <div>
-                <h3>Sobre nosotros</h3>
-                <p>Somos un pequeño grupo de estudiantes de 5to semestre de la Facultad de Ciencias de la Computacion
-                de la BUAP, entusiastas de la codificacion al servicio del usuario. </br></p>
+                <h3>More About Us</h3>
+                <p>kjasdkjakdajdksadjakdjakdaksadlkdlakdla<br>
+                jsdajdksajkldjaldkajdkajdakdajkldakjd</br></p>
             </div>
 
             <div class="footer-icons">
@@ -85,9 +97,12 @@
         </div>
 
         <div class="footer-right">
-            <ul class="nav_links">
-          <li><a href="{% url 'store:FAQ' %}"><p style="color:#ffd166;font-size: 20px;font-weight:bold;padding-bottom: 40px;">Preguntas Frecuentes</p></a></li>
-        </ul>
+            <h3>FAQ</h3>
+            <i>¿Prueba dedakjdkajdklsad?</i>
+            <br></br>
+            <i>¿Prueba dedakjdkajdklsad?</i>
+            <br></br>
+            <i>¿Prueba dedakjdkajdklsad?</i>
         </div>
     </footer>
   </body>

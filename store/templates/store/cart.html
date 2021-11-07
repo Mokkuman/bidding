@@ -1,0 +1,14 @@
+{% extends 'core/layout.html' %}
+
+{% block title %}
+    Carrito
+{% endblock title %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <!--Mostrar el carrito de compras xd-->
+        Carrito
+    {% else %}
+        <h1>Necesitas tener iniciada sesión</h1>
+    {% endif %}
+{% endblock body %}

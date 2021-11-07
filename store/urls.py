@@ -6,8 +6,7 @@ app_name = 'store' #Para hacer las conexiones correspondientes entre templates d
 # https://docs.djangoproject.com/en/3.0/intro/tutorial03/#namespacing-url-names
 
 urlpatterns = [
-    path("", views.productListing,name="productListing"),
-    path("categories",views.categories,name="categories"),
-    path("FAQ",views.FAQ,name="FAQ"),
+    path("cart",views.cart,name="cart"),
     path("productXXX", views.goToProduct, name="productPage"),
+    path("uploadProduct",views.uploadProduct,name="uploadProduct"),
 ]
