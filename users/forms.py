@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm, fields
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
+from store.models import BidProduct
 
 class UserForm(UserCreationForm):
     class Meta:
@@ -26,3 +27,9 @@ class UpdateMoneyForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['money']
+
+class BidForm(forms.ModelForm):
+    currentBid = forms.IntegerField(widget=forms.NumberInput(None))
+    class Meta:
+        model = BidProduct
+        fields = ['currentBid']

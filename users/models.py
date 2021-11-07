@@ -74,7 +74,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.money
 
 class Bid(models.Model):
-    userID = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True) 
     userBid = models.PositiveBigIntegerField()
     #relación: 1 a muchos para BidProduct
     product = models.ForeignKey("store.BidProduct", on_delete=models.CASCADE) 
+
+    def __str__(self):
+        return self.user.getEmail() + "-" + self.product.productName + "-$" + str(self.userBid)

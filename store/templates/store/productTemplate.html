@@ -19,11 +19,11 @@
         <div class="productDescription">
             
             <div class="productName">
-                <h1>Producto: {{ product.name}}</h1>
+                <h1>Producto: {{ product.productName }}</h1>
             </div>
 
             <div class="price">
-                <p>Apuesto más alto: ${{ product.currentBid}}</p>
+                <p>Puja más alta: ${{ product.currentBid}}</p>
             </div>
 
             <div class="description">
@@ -38,13 +38,17 @@
             <div class="condition">
                 <h3>Condición: {{ product.condition }}</h3>
             </div>
-
-            <div class="bid">
-                <button class="bidBtn">APOSTAR!</button>
+            <p>Tu puja debe ser mayor a la puja más alta!</p> 
+            
+            <div class="form">
+                <form method="POST" >
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button id="submitBtn" type="submit" name="BidProduct">PUJAR!</button>
+                </form>
             </div>
 
-        </div>
-
+        </div>   
     </div>
     {% endblock body %}
 {% else %}
