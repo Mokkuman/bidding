@@ -56,8 +56,8 @@ def updateProfile(request):
         else:
             return redirect('users:myProfile')
     else:
-        data={'Nombre':request.user.firstName,'Apellido':request.user.lastName,
-            'Ciudad':request.user.city,'Estado':request.user.state}
+        data={'firstName':request.user.firstName,'lastName':request.user.lastName,
+            'city':request.user.city,'state':request.user.state}
         theForm = UpdateForm(None,initial=data)
         return render(request,"users/updateProfile.html",{"form":theForm})
 
