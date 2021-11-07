@@ -29,17 +29,17 @@
         <ul class="nav_links">
           
           {% if user.is_authenticated %}
-            <li><a href="#"> Subir</a></li>
-            <li><a href="#">Mis productos</a></li>                        
-            <li><a href="#">Lista de deseos</a></li>
+            <li><a href="{% url 'store:uploadProduct' %}"> Subir</a></li>
+            <li><a href="{% url 'users:myProducts' %}">Mis productos</a></li>                        
+            <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
             <li><a href="{% url 'store:cart' %}" id="iconRef">
               <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
             </a></li>
-            <li><a href="#" id="iconRef"> 
+            <li><a href="{% url 'users:notifications' %}" id="iconRef"> 
               <span id="iconImg" class="material-icons-outlined">notifications</span>
             </a></li>
           {% else %}
-            <li><a href="#">Lista de deseos</a></li>
+            <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
             <li><a href="{% url 'store:cart' %}" id="iconRef">
               <span id = "iconImg" class="material-icons-outlined">shopping_cart</span>
             </a></li>

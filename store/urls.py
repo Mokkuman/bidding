@@ -8,4 +8,5 @@ app_name = 'store' #Para hacer las conexiones correspondientes entre templates d
 urlpatterns = [
     path("cart",views.cart,name="cart"),
     path("productXXX", views.goToProduct, name="productPage"),
+    path("uploadProduct",views.uploadProduct,name="uploadProduct"),
 ]

@@ -76,3 +76,12 @@ def updateMoney(request):
             return redirect('users:myProfile')
     theForm = UpdateMoneyForm()
     return render(request,"users/addMoney.html",{"form":theForm})
+
+def wishlist(request):
+    return render(request,"users/wishlist.html")
+
+def myProducts(request):
+    return render(request,"users/myProducts.html")
+
+def notifications(request):
+    return render(request,"users/notifications.html")

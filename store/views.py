@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def cart(request):
-    return HttpResponse("Carrito ") #Solo es un ejemplo
+    return render(request, "store/cart.html")
 
 def goToProduct(request):
     try:
@@ -23,3 +23,6 @@ def goToProduct(request):
         return render(request, "store/productTemplate.html",{
             'productFound':False
         })
+
+def uploadProduct(request):
+    return render(request,"store/uploadProduct.html")
