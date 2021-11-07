@@ -38,6 +38,6 @@ def FAQ(request):
       Puedes elegir entre subir un producto con precio fijo o iniciar una puja.</FONT></br></p>
       <div><FONT SIZE=6 COLOR=#073b4c>¿Qué es una puja?</FONT>
       <FONT SIZE=4><p>Es muy similar a como funcionan las subastas. Al optar por subir tu producto
-      por una puja, los demás usuarios tendrán hasta 24 hrs. para ofertar el mejor precio para tu 
+      por una puja, los demás usuarios tendrán hasta 24 horas para ofertar el mejor precio para tu 
       producto. Al finalizar el día, el usuario con la mejor propuesta económica se habrá llevado tu producto!</FONT></br></p>
       </div>""")
