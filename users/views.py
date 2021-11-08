@@ -48,7 +48,7 @@ def goToProfile(request):
 def updateProfile(request):
     if request.method == "POST":
         if 'UpdateProfile' in request.POST:
-            theForm = UpdateForm(request.POST,instance=request.user)
+            theForm = UpdateForm(request.POST,request.FILES,instance=request.user)
             theForm.actual_user=request.user 
             if theForm.is_valid():
                 theForm.save()

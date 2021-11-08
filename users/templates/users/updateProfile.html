@@ -10,7 +10,7 @@
 {% block body %}
     <h1>Modifica tus datos</h1>
     <div class="form">
-        <form method="POST" action="{% url 'users:updateProfile' %}" >
+        <form method="POST" action="{% url 'users:updateProfile' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <button id="submitBtn" type="submit" name="UpdateProfile">Realizar cambios</button>

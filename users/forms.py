@@ -20,7 +20,7 @@ class LoginForm(forms.Form):
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('firstName','lastName','city','state',)
+        fields = ('firstName','lastName','city','state','profilePic',)
 
 class UpdateMoneyForm(forms.ModelForm):
     money = forms.IntegerField(widget=forms.NumberInput(None),min_value=0,initial=0,error_messages={0:"Los créditos deben ser mayor o igual a 1"})

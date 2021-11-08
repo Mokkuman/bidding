@@ -17,6 +17,8 @@
             <p>Ciudad: {{user.city}}</p>
             <p>Estado: {{user.state}}</p>
             <p>Dinero: {{user.money}}</p>
+            <img class = "profilePic" src="{{request.user.profilePic.url}}"
+                width="260"/>
     </div>
     <div class="button">
         <a class="modificar" href="{% url 'users:updateProfile' %}">

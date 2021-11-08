@@ -43,6 +43,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     state = models.CharField(max_length=64,blank = True)
     money = models.PositiveIntegerField(blank=True,default=0)
     
+    #profile image pic
+    profilePic = models.ImageField(default="pic_default.jpg",null = True, blank = True)
     #new
     products = models.ManyToManyField("store.StockProduct", blank=True)
 
