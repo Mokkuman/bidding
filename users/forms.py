@@ -27,9 +27,3 @@ class UpdateMoneyForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['money']
-
-class BidForm(forms.ModelForm):
-    currentBid = forms.IntegerField(widget=forms.NumberInput(None))
-    class Meta:
-        model = BidProduct
-        fields = ['currentBid']

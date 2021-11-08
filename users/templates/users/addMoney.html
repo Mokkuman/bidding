@@ -15,9 +15,7 @@
             {% csrf_token %}
             {{form.as_p}}
             <button id="submitBtn" type="submit" name="UpdateMoney">Añadir dinero</button>
-            <a class="regresar" href="{% url 'users:myProfile' %}">
-                <button>Cancelar</button>
-            </a>
+            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
         </form>
     </div>
 {% endblock body %}
