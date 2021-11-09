@@ -26,6 +26,7 @@ footer {
 @media (max-height: 880px) {
     footer {position: static; }
 }
+
 .footer-distributed {
   /*background: rgba(1, 31, 46, 0.75);*/
   background: #073b4c;
@@ -35,8 +36,9 @@ footer {
   /*padding: 50px 50px 60px 100px;*/
   padding-left: 20px;
   padding-top: 30px;
-  padding-bottom: 30px;
-  margin-top: 80px;
+  padding-bottom: 5px;
+  margin-top: 40px;
+  height: 50%;
 }
 
 .footer-distributed .footer-left,
@@ -97,9 +99,16 @@ footer {
     width: 20%;
 }
 
-.footer-right i {
-    color: #ffd166;
-    font-size: 16px;
+.footer-right a {
+    color: #FFFFFF;
+     text-decoration: none;
+}
+
+.footer-right p {
+    color:#ffd166;
+    font-size: 20px;
+    font-weight:bold;
+    padding-bottom: 40px
 }
 
 @media (max-width: 880px) {

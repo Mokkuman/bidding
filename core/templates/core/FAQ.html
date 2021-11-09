@@ -1,11 +1,16 @@
 {% extends 'core/layout.html' %}
+{% load static %}
+
+{% block cssPath %} 
+  <link rel="stylesheet" href="{% static 'core/styleFAQ.css' %}"  type="text/css"/>
+{% endblock cssPath %}
 
 {% block title %}
     INDEX
 {% endblock title %}
 
 {% block body %}
-  <div><h3><FONT SIZE=20 COLOR=#ef476f>Preguntas Frecuentes</h3></FONT>
+    <!-- <div><h3><FONT SIZE=20 COLOR=#ef476f>Preguntas Frecuentes</h3></FONT>
      <div><FONT SIZE=6 COLOR=#073b4c>¿Cómo agrego artículos a mi carrito?</FONT>
       <FONT SIZE=4><p>Una vex hayas iniciado sesión, da clic en cualquier artículo que desees obtener y 
       luego da clic en Agregar al carrito. ¡Asi de sencillo!
@@ -17,5 +22,42 @@
       <FONT SIZE=4><p>Es muy similar a como funcionan las subastas. Al optar por subir tu producto
       por una puja, los demás usuarios tendrán hasta 24 hrs. para ofertar el mejor precio para tu 
       producto. Al finalizar el día, el usuario con la mejor propuesta económica se habrá llevado tu producto!</FONT></br></p>
+      </div> -->
+      <div class="container">
+        <div class="header-title">
+          <div class="header-style">
+            <h1>Preguntas Frecuentes:</h1>
+          </div>
+        </div>
+        <div class="FAQ-container">
+          <div class="small-spacing">
+            <div class="question-container">
+              <div class="question-list">
+                <ul class="faq-list">
+                  <li class="faq-expandable">
+                    <a class="faq-trigger" id="a0" href="#0">
+                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
+                    </a>
+                  </li>
+                  <li class="faq-expandable">
+                    <a class="faq-trigger" id="a1" href="#1">
+                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
+                    </a>
+                  </li>
+                  <li class="faq-expandable">
+                    <a class="faq-trigger" id="a2" href="#2">
+                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
+                    </a>
+                  </li>
+                  <li class="faq-expandable">
+                    <a class="faq-trigger" id="a3" href="#3">
+                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 {% endblock body %}
