@@ -3,7 +3,7 @@
 {% load static %}   
 {% load crispy_forms_tags %} 
 
-<script src="{% static 'users/inputField.js'%}"></script>
+
 {% block cssPath %} 
 <link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
 {% endblock cssPath %}
@@ -41,6 +41,7 @@
                                 <div class="form-master">
                                      {{ form | crispy }}
                                     <button id="submitBtn" type="submit" value="CreateUser">Crear usuario</button>   
+                                    <script src="{% static 'users/labels.js'%}"></script>
                                 </div>
                             </form>
                         </div>
