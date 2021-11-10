@@ -6,8 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-      rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'core/styleLayout.css' %}"  type="text/css"/>
     {% block cssPath %}{% endblock cssPath %}
@@ -36,7 +40,7 @@
               <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
             </a></li>
             <li><a href="{% url 'users:notifications' %}" id="iconRef"> 
-                <span id="iconImg" class="material-icons-outlined">notifications</span>
+              <span id="iconImg" class="material-icons-outlined">notifications</span>
             </a></li>
           {% else %}
             <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
@@ -78,7 +82,7 @@
         <div class="footer-center">
             <div>
                 <h3>Sobre nosotros</h3>
-                <p>Somos un pequeño grupo de estudiantes de 5to semestre de la Facultad de Ciencias de la Computacion
+                <p>Somos un pequeÃ±o grupo de estudiantes de 5to semestre de la Facultad de Ciencias de la Computacion
                 de la BUAP, entusiastas de la codificacion al servicio del usuario. </br></p>
             </div>
 
@@ -96,9 +100,9 @@
 
         </div>
         <div class="footer-right">
-          <ul>
-            <li><a href="{% url 'core:FAQ' %}"><p>Preguntas Frecuentes</p></a></li>
-          </ul>
+        <ul class="nav_links">
+          <li><a href="{% url 'core:FAQ' %}"><p style="color:#ffd166;font-size: 20px;font-weight:bold;padding-bottom: 40px;">Preguntas Frecuentes</p></a></li>
+        </ul>
         </div>
     </footer>
   </body>

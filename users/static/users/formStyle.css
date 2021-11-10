@@ -1,3 +1,4 @@
+/*LOGIN CSS */
 .wrap-button {
     width: 50%;
     display: block;
@@ -84,10 +85,6 @@
     color: #073b4c;
 }
 
-/*.signup-link a, a:hover {
-    text-decoration: none;
-    color: inherit;
-}*/
 
 .signup-text {
     font-size: 18px;
@@ -124,7 +121,7 @@ a:hover {
 }
 
 
-/* INICIO DE ESTILADO PARA EL SIGN UP */
+/* SIGNUP CSS */
 .main {
     box-sizing: border-box;
 }
@@ -265,10 +262,6 @@ a:hover {
     position: relative;
 }
 
-/*label[for="id_city"] {
-    display: none;
-} */
-
 .form-control:focus {
     outline: none;
 }
@@ -312,7 +305,6 @@ a:hover {
     background: #af8d8d;
     color: #d34848;
 }
-
 
 /*Responsive prototype  IGNORE */
 @media (min-width: 576px) {
