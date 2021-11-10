@@ -10,19 +10,6 @@
 {% endblock title %}
 
 {% block body %}
-    <!-- <div><h3><FONT SIZE=20 COLOR=#ef476f>Preguntas Frecuentes</h3></FONT>
-     <div><FONT SIZE=6 COLOR=#073b4c>¿Cómo agrego artículos a mi carrito?</FONT>
-      <FONT SIZE=4><p>Una vex hayas iniciado sesión, da clic en cualquier artículo que desees obtener y 
-      luego da clic en Agregar al carrito. ¡Asi de sencillo!
-      Para ver los artículos que posees en tu carrito, da clic al ícono de la parte superior.</FONT></br></p>
-      <div><FONT SIZE=6 COLOR=#073b4c>¿Cómo puedo vender mis productos?</FONT>
-      <FONT SIZE=4><p>Haz clic en el apartado "Mi perfil" y busca la opción "Subir un producto".
-      Puedes elegir entre subir un producto con precio fijo o iniciar una puja.</FONT></br></p>
-      <div><FONT SIZE=6 COLOR=#073b4c>¿Qué es una puja?</FONT>
-      <FONT SIZE=4><p>Es muy similar a como funcionan las subastas. Al optar por subir tu producto
-      por una puja, los demás usuarios tendrán hasta 24 hrs. para ofertar el mejor precio para tu 
-      producto. Al finalizar el día, el usuario con la mejor propuesta económica se habrá llevado tu producto!</FONT></br></p>
-      </div> -->
       <div class="container">
         <div class="header-title">
           <div class="header-style">
@@ -30,34 +17,38 @@
           </div>
         </div>
         <div class="FAQ-container">
-          <div class="small-spacing">
-            <div class="question-container">
-              <div class="question-list">
-                <ul class="faq-list">
-                  <li class="faq-expandable">
-                    <a class="faq-trigger" id="a0" href="#0">
-                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
-                    </a>
-                  </li>
-                  <li class="faq-expandable">
-                    <a class="faq-trigger" id="a1" href="#1">
-                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
-                    </a>
-                  </li>
-                  <li class="faq-expandable">
-                    <a class="faq-trigger" id="a2" href="#2">
-                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
-                    </a>
-                  </li>
-                  <li class="faq-expandable">
-                    <a class="faq-trigger" id="a3" href="#3">
-                      <h3> ¿Cómo agrego artículos a mi carrito? </h3>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div class="faq-list">
+            <ul class="faq-questions">
+              <li class="faq-expandable2">
+                <button type="button" class="faq-button">¿Cómo agrego artículos a mi carrito?</button>
+                <div class="faq-answer">
+                  <p>Una vex hayas iniciado sesión, da clic en cualquier artículo que desees obtener y luego da clic en Agregar al carrito. ¡Asi de sencillo!
+                     Es muy similar a como funcionan las subastas. Al optar por subir tu producto
+                     por una puja, los demás usuarios tendrán hasta 24 hrs. para ofertar el mejor precio para tu 
+                     producto. Al finalizar el día, el usuario con la mejor propuesta económica se habrá llevado tu producto!.
+                  </p>
+                </div>
+              </li>
+              <li class="faq-expandable2">
+                <button type="button" class="faq-button">¿Cómo puedo vender mis productos?</button>
+                <div class="faq-answer">
+                  <p>Haz clic en el apartado "Mi perfil" y busca la opción "Subir un producto".
+                     Puedes elegir entre subir un producto con precio fijo o iniciar una puja.
+                  </p>
+                </div>
+              </li>
+              <li class="faq-expandable2">
+                <button type="button" class="faq-button">¿Qué es una puja?</button>
+                <div class="faq-answer">
+                  <p>Es muy similar a como funcionan las subastas. Al optar por subir tu producto
+                     por una puja, los demás usuarios tendrán hasta 24 hrs. para ofertar el mejor precio para tu 
+                     producto. Al finalizar el día, el usuario con la mejor propuesta económica se habrá llevado tu producto!
+                  </p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
+        <script src="{% static 'core/buttons.js'%}"></script>
       </div>
 {% endblock body %}

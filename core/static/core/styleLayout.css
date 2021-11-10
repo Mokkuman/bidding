@@ -37,8 +37,7 @@ footer {
   padding-left: 20px;
   padding-top: 30px;
   padding-bottom: 5px;
-  margin-top: 40px;
-  height: 50%;
+  margin-top: 80px;
 }
 
 .footer-distributed .footer-left,
@@ -211,6 +210,13 @@ button:hover{
 #check{
     display: none;
 }
+
+#iconImg {
+    text-align: center;
+    
+}
+
+
 /*Para que se ajuste al tamanno de pantalla*/
 
 @media (max-width: 952px){

@@ -313,42 +313,12 @@ a:hover {
     color: #d34848;
 }
 
-/*#div_id_firstName label::before {
-    content: "Nombre";
-    white-space: pre;
-}
-
-#div_id_lastName label::before {
-    content: "Apellido";
-    white-space: pre;
-}
-
-#div_id_state label::before {
-    content: "Estado";
-    white-space: pre;
-}
-
-#div_id_password1 label::before {
-    content: "Contraseña";
-    white-space: pre;
-}
-
-#div_id_password2 label::before {
-    content: "Confirmar Contraseña";
-    white-space: pre;
-}
-
-#div_id_city label::before {
-    content: "Ciudad";
-    white-space: pre;
-}*/
 
 /*Responsive prototype  IGNORE */
 @media (min-width: 576px) {
     .container-signup {
       max-width: 540px;
      }
-
 }
 
 @media (min-width: 768px) {
