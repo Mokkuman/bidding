@@ -1,5 +1,5 @@
 from django.shortcuts import render
-#from store.models import User
+from users.models import User
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -60,6 +60,19 @@ def updateProfile(request):
             'city':request.user.city,'state':request.user.state}
         theForm = UpdateForm(None,initial=data)
         return render(request,"users/updateProfile.html",{"form":theForm})
+    
+@login_required
+def deleteUser(request):
+    if request.method=="POST":
+        if "delete" in request.POST:
+            user = User.objects.get(email=request.user.email)
+            user.is_active = False
+            user.save()
+            logout(request)
+            return redirect('core:index')
+        else:
+            return redirect('users:myProfile')        
+    return render(request,"users/deleteUser.html")
 
 def updateMoney(request):
     if request.method=="POST":

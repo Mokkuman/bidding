@@ -42,12 +42,31 @@
             <div class="buy">
                 <form method="POST" >
                     {% csrf_token %}
-                    <button id="submitBtn" type="submit" name="BidProduct">Agregar al carrito!</button>
+                    <button id="add-button" value={{product.id}} type="submit" name="BidProduct">Agregar al carrito!</button>
                 </form>
             </div>
 
         </div>   
     </div>
+    <script>
+        $(document).on('click','#add-button',function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'POST',
+                url:'{% url "cart:cartAdd" %}',
+                data:{
+                    productid:$('#add-button').val(),
+                    csrfmiddlewaretoken:"{{csrf_token}}",
+                    action:'post'
+                },
+                success: function(json){
+                    
+                },
+                error: function(xhr,errmsg,err){}
+            });
+        })
+    </script>
+
     {% endblock body %}
 {% else %}
     <h1>Product no encontrado!</h1>

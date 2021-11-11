@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'store', #app creada para los productos
     'users', #app creada para los usuarios
     'core', #solo esta el home aca y el layout que es la base de nuestro html
+    'cart',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart'
             ],
         },
     },

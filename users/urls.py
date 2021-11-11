@@ -12,4 +12,5 @@ urlpatterns = [
     path("wishlist",views.wishlist,name="wishlist"),
     path("myProduts",views.myProducts,name="myProducts"),
     path("notifications",views.notifications,name="notifications"),
+    path("deleteUser",views.deleteUser,name="deleteUser"),
 ]

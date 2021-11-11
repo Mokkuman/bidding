@@ -1,13 +1,20 @@
 from django.db import models
-from users.models import Bid
+from users.models import Bid,User
 
 # Create your models here.
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(isActive=True)
 
 class Product(models.Model):
     productName = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
     category = models.CharField(max_length=50)
+    isActive = models.BooleanField(default=True)
     image = models.ImageField()
+    objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         abstract = True
@@ -30,6 +37,7 @@ class BidProduct(Product):
     minBid = models.PositiveIntegerField(default=0)
     condition = models.CharField(max_length=50)
     bidWinner = models.OneToOneField(Bid, null=True, on_delete=models.SET_NULL, blank=True)
+    createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="bidCreator",null=True)
 
     def save(self, *args, **kwargs):
         if not self.currentBid:
@@ -51,6 +59,7 @@ class BidProduct(Product):
 class StockProduct(Product):
     price = models.FloatField(max_length=50)
     inventory = models.PositiveIntegerField(blank=True,default=1)
+    createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="productCreator",null=True)
 
     def getPrice(self):
         return self.price

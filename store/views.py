@@ -34,14 +34,6 @@ def goToBidProduct(request,id_product):
 
 def goToStockProduct(request,id_product):
     product = StockProduct.objects.get(id=id_product)
-    if request.method == "POST":
-        if not request.user.is_authenticated:
-            return redirect('users:loginV')
-        else:
-            #Establecer relacion con el producto
-            #Agregar al carrito
-            #Bajar disponibilidad
-            print("Compra exitosa!") #use JavaScript alert() or some other UI notification
     return render(request, "store/stockProductTemplate.html", {"product" : product})
 
 def uploadProduct(request):
