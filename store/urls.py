@@ -9,5 +9,5 @@ urlpatterns = [
     #path("cart",views.cart,name="cart"),
     path("bid/<int:id_product>/", views.goToBidProduct, name="bidProductPage"),
     path("stock/<int:id_product>/", views.goToStockProduct, name="stockProductPage"),
-    path("uploadProduct",views.uploadProduct,name="uploadProduct"),
+    path("uploadProduct",views.BidProductCreateView.as_view(),name="uploadProduct"),
 ]

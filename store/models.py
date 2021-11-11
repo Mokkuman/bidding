@@ -15,6 +15,7 @@ class Product(models.Model):
     image = models.ImageField()
     objects = models.Manager()
     products = ProductManager()
+    seller = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         abstract = True
@@ -36,8 +37,9 @@ class BidProduct(Product):
     currentBid = models.PositiveIntegerField(blank=True,default=0)
     minBid = models.PositiveIntegerField(default=0)
     condition = models.CharField(max_length=50)
-    bidWinner = models.OneToOneField(Bid, null=True, on_delete=models.SET_NULL, blank=True)
-    createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="bidCreator",null=True)
+    bidWinner = models.OneToOneField(User, related_name="BidWinner", null=True, on_delete=models.SET_NULL, blank=True)
+
+    #createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="bidCreator",null=True)
 
     def save(self, *args, **kwargs):
         if not self.currentBid:
@@ -59,7 +61,7 @@ class BidProduct(Product):
 class StockProduct(Product):
     price = models.FloatField(max_length=50)
     inventory = models.PositiveIntegerField(blank=True,default=1)
-    createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="productCreator",null=True)
+    #createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="productCreator",null=True)
 
     def getPrice(self):
         return self.price

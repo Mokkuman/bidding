@@ -46,7 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     #profile image pic
     profilePic = models.ImageField(default="pic_default.jpg",null = True, blank = True)
     #new
-    products = models.ManyToManyField("store.StockProduct", blank=True)
+    cartStockProducts = models.ManyToManyField("store.StockProduct", blank=True)
+
 
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default=False) 
@@ -76,10 +77,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.money
 
 class Bid(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True) 
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     userBid = models.PositiveBigIntegerField()
     #relación: 1 a muchos para BidProduct
-    product = models.ForeignKey("store.BidProduct", on_delete=models.CASCADE) 
+    product = models.ForeignKey("store.BidProduct", null=True, on_delete=models.SET_NULL) 
 
     def __str__(self):
         return self.user.getEmail() + "-" + self.product.productName + "-$" + str(self.userBid)

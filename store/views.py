@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import BidProduct, Product,StockProduct
-from store.forms import BidForm
-from users.models import Bid
+from store.forms import BidForm, BidProductForm
+from users.models import Bid, User
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -36,5 +37,17 @@ def goToStockProduct(request,id_product):
     product = StockProduct.objects.get(id=id_product)
     return render(request, "store/stockProductTemplate.html", {"product" : product})
 
-def uploadProduct(request):
-    return render(request,"store/uploadProduct.html")
+class BidProductCreateView(CreateView):
+    model = BidProduct
+    form_class = BidProductForm
+    template_name = 'store/uploadProduct.html'
+    #success_url = 'uploadProduct'
+    
+    #def get_success_url(self):
+     #   return reverse_lazy('product_list')
+    
+    def form_valid(self, form):
+        bidProduct = form.save(commit=False)
+        bidProduct.seller = User.objects.get(id=self.request.user.id) 
+        bidProduct.save()
+        return redirect("core:index")

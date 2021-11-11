@@ -103,6 +103,20 @@
             </div>
             
           </div>
+
+          {% if user.is_authenticated %}
+            <h2>Mis Pujas:<h2>
+      
+              {% for biddedProduct in biddedProducts %}
+                  <h3>Producto: {{ biddedProduct.productName }} </h3>
+                  <p>Bid más alto: ${{ biddedProduct.currentBid }} </p>
+                  <p>Condición: {{ biddedProduct.condition }} </p>
+                  <img alt="BidProduct Image" src="{{biddedProudct.image.url}}"
+                              width="260"/>
+                  <p> Más información sobre producto: <a href="{% url 'store:bidProductPage' biddedProduct.id %}"> Aquí</a>
+              {% endfor %}
+            {% endif %}
+
         </main>
         
 

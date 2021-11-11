@@ -3,11 +3,20 @@ from django.shortcuts import get_object_or_404, render
 from .cart import Cart
 from store.models import StockProduct
 from django.http import JsonResponse
+from users.models import Bid, User
 # Create your views here.
 
 def cartSummary(request):
     cart = Cart(request)
-    return render(request,'store/cart.html',{'cart':cart})
+    if not request.user.is_authenticated:
+        return render(request,'store/cart.html',{'cart':cart})
+    bids = Bid.objects.filter(user=request.user)
+    biddedProducts = []
+    for bid in bids:
+        biddedProducts.append(bid.product)
+    return render(request,'store/cart.html',{'cart':cart,
+                                             'biddedProducts':biddedProducts})
+    
 
 def cartAdd(request):
     cart = Cart(request)

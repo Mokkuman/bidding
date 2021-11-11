@@ -6,5 +6,13 @@
 
 {% block body %}
     <!--Form para subir un producto-->
+    <div class="form">
+        <form method="POST" action="{% url 'store:uploadProduct' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button id="submitBtn" type="submit" name="UploadProduct">Subir Producto</button>
+            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+        </form>
+    </div>
     Sube un producto
 {% endblock body %}
