@@ -1,6 +1,145 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-*{
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+img.socialImg{
+    width: 30px;
+    padding: none;
+}
+
+#navHeader1 {
+    background: #14be91;
+}
+
+#buttonHeader {
+    background-color: #32a586;
+    color:#0a191f !important;
+    border-color:rgb(80, 78, 78) ;
+    border: 1px solid #000000;
+}
+
+#buttonHeader:hover {
+    background-color: #ffd166;
+}
+
+#profileButton {
+    font-size: 25px;
+    color: #000000;
+}
+
+.nav-link {
+    font-size: 26px;
+    color: #000000;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/*nav{
+    background-color: #06d6a0;/*#b2ff9e;
+    height: 67px;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.enlace{
+    position: absolute;
+    padding: 3px 50px;
+}*/
+.logo{
+    height: 60px;
+}
+/*
+nav ul{
+    float: left;
+    margin-right: 0px;
+}
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+nav ul li a{
+    color: #3C1642;
+    font-size: 18px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+}
+
+li a.active, li a:hover{
+    background: #ffd166;/*#1DD3B0;
+    transition: .5s;
+}
+button{
+    padding: 9px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #ef476f;/*rgba(0,136,169, 1);
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+button:hover{
+    background-color: #ffd166;/*rgba(0,136,169, 0.6);
+}
+.checkbtn{
+    font-size: 30px;
+    color: #086375;
+    float: right;
+    line-height: 67px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+#check{
+    display: none;
+}*/
+
+#iconImg {
+    text-align: center;
+    
+}
+
+#footer-icons a {
+    padding-right: 20px;
+    text-decoration: none;
+    color: #ffd166;
+}
+
+#FAQ-Support {
+    padding-top: 35px;
+}
+
+#FAQ-link {
+    vertical-align: middle;
+    text-decoration: none;
+    color: #ffd166;
+    line-height: 24px;
+}
+
+.page-footer {
+    padding-top: 15px;
+    color: #ffd166;
+    background: rgba(1, 31, 46, 0.75);
+}
+
+#copyright-id {
+    padding-top: 0px !important;
+    background: #082a35;
+}
+
+
+/**{
     font-family: 'Lato', sans-serif;
 }
 header{
@@ -18,22 +157,22 @@ body{
   background-color: #dadada;;
 }
 /*footer*/
-footer {
+/*footer {
     position: fixed;
     bottom: 0;
 }
 
-@media (max-height: 880px) {
+/* @media (max-height: 880px) {
     footer {position: static; }
 }
 
 .footer-distributed {
-  /*background: rgba(1, 31, 46, 0.75);*/
+  /*background: rgba(1, 31, 46, 0.75);
   background: #073b4c;
   box-sizing: border-box;
   width: 100%;
   text-align: left;
-  /*padding: 50px 50px 60px 100px;*/
+  /*padding: 50px 50px 60px 100px;
   padding-left: 20px;
   padding-top: 30px;
   padding-bottom: 5px;
@@ -109,7 +248,7 @@ footer {
     font-weight:bold;
     padding-bottom: 40px
 }
-
+/*
 @media (max-width: 880px) {
     .footer-distributed .footer-left,
     .footer-distributed .footer-center,
@@ -139,16 +278,16 @@ footer {
     .footer-distributed h3 {
         padding-right: 40px;
     }
-}
+}*/
 
-/*demas contenido del layout*/
+/*demas contenido del layout
 img.socialImg{
   width: 30px;
   padding: none;
 }
 
 nav{
-    background-color: #06d6a0;/*#b2ff9e;*/
+    background-color: #06d6a0;/*#b2ff9e;
     height: 67px;
     width: 100%;
     font-family: 'Roboto', sans-serif;
@@ -184,19 +323,19 @@ nav ul li a{
 }
 
 li a.active, li a:hover{
-    background: #ffd166;/*#1DD3B0;*/
+    background: #ffd166;/*#1DD3B0;
     transition: .5s;
 }
 button{
     padding: 9px 25px;
     border: none;
     border-radius: 25px;
-    background-color: #ef476f;/*rgba(0,136,169, 1);*/
+    background-color: #ef476f;/*rgba(0,136,169, 1);
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
 button:hover{
-    background-color: #ffd166;/*rgba(0,136,169, 0.6);*/
+    background-color: #ffd166;/*rgba(0,136,169, 0.6);
 }
 .checkbtn{
     font-size: 30px;
@@ -217,7 +356,7 @@ button:hover{
 }
 
 
-/*Para que se ajuste al tamanno de pantalla*/
+/*Para que se ajuste al tamanno de pantalla
 
 @media (max-width: 952px){
     .enlace{

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -22,92 +22,165 @@
 
   </head>
   <body>
-    <header>
-      <a href="{% url 'core:index' %}" class="enlace">
-          <img src="{% static 'store/logo.png' %}"  alt="logo" class="logo">
-      </a>
-      <nav>
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-          <span class="material-icons-outlined">
-            menu
-          </span>
-        </label>
-        
-        <ul class="nav_links">
-          
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'store:uploadProduct' %}"> Subir</a></li>
-            <li><a href="{% url 'users:myProducts' %}">Mis productos</a></li>                        
-            <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
-            <li><a href="{% url 'cart:cartSummary' %}" id="iconRef">
-              <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
-            </a></li>
-            <li><a href="{% url 'users:notifications' %}" id="iconRef"> 
-              <span id="iconImg" class="material-icons-outlined">notifications</span>
-            </a></li>
-          {% else %}
-            <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
-            <li><a href="{% url 'cart:cartSummary' %}" id="iconRef">
-              <span id = "iconImg" class="material-icons-outlined">shopping_cart</span>
-            </a></li>
-          {% endif %}
+    <div class="container-fluid">
+        <header>
+          <nav id="navHeader1" class="navbar navbar-expand-lg">
+            <div class="container">
+              <a class="navbar-brand" href="{% url 'core:index' %}">
+                <img src="{% static 'store/logo.png' %}"  alt="logo" class="logo">
+              </a>       
 
-        </ul>
-        <div class="buttons">
-          {% if user.is_authenticated %}
-            <a class="login" href="{% url 'users:logout' %}"><button>Log out</button></a>
-            <a class="signup" href="{% url 'users:myProfile' %}"><button>My Profile</button></a>
-          {% else %}
-            <a class="login" href="{% url 'users:loginV' %}"><button>Log in</button></a>
-            <a class="signup" href="{% url 'users:signup' %}"><button>Sign up</button></a>
-          {% endif %}
-        </div>
-      </nav>
-    </header>
+              <!-- Button for mobile devices -->
+              <button id="buttonHeader" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMobileToggle" aria-controls="navbarMobileToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
+              <div class="collapse navbar-collapse" id="navbarMobileToggle">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'store:uploadProduct' %}"> Subir</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:myProducts' %}">Mis productos</a></li>                        
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'cart:cartSummary' %}" id="iconRef">
+                      <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
+                    </a></li>
+                    <l class="nav-item"i><a class="nav-link" href="{% url 'users:notifications' %}" id="iconRef"> 
+                      <span id="iconImg" class="material-icons-outlined">notifications</span>
+                    </a></li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:wishlist' %}">Lista de deseos</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'cart:cartSummary' %}" id="iconRef">
+                      <span id = "iconImg" class="material-icons-outlined">shopping_cart</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
 
-    <div class="main">{% block body %} {% endblock body %}</div>
-
-    <footer class="footer-distributed">
-        <div class="footer-left">
-            <h3>Any suggestions? Tell Us!</h3>
-            <p class="footer-links">
-                <i>Our e-mail</i>
-                |
-                <i>Call us!</i>
-                |
-                <i>Text us ;)</i>
-            </p>
-
-            <p class="footer-Copyright">Copyright &copy; 2021<br>Todos los derechos reservados</br></p>
-        </div>
-
-        <div class="footer-center">
-            <div>
-                <h3>Sobre nosotros</h3>
-                <p>Somos un pequeÃ±o grupo de estudiantes de 5to semestre de la Facultad de Ciencias de la Computacion
-                de la BUAP, entusiastas de la codificacion al servicio del usuario. </br></p>
+                <div class="btn-group float-end">
+                  {% if user.is_authenticated %}
+                    <a id="profileButton" href="#" class="dropdown-toggle text-decoration-none" data-bs-toggle="dropdown">
+                      <i class="bi bi-person-circle"></i>
+                      <span>Hola, {{user.firstName}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a href="{% url 'users:myProfile' %}" class="dropdown-item">My Profile</a></li>
+                      <li><a href="{% url 'users:logout' %}" class="dropdown-item">Log Out</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                    </ul>
+                  {% else %}
+                    <a id="profileButton" href="#" class="dropdown-toggle text-decoration-none" data-bs-toggle="dropdown">
+                      <i class="bi bi-person-circle"></i>
+                      <span>Hola, invitado</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a href="{% url 'users:loginV' %}" class="dropdown-item">Log In</a></li>
+                      <li><a href="{% url 'users:signup' %}" class="dropdown-item">Sign Up</a></li>
+                    </ul>                  
+                  {% endif %}
+                </div>
+              </div>              
             </div>
+            <!-- <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+              <span class="material-icons-outlined">
+                menu
+              </span>
+            </label>
+            
+            <ul class="nav_links">
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'store:uploadProduct' %}"> Subir</a></li>
+                <li><a href="{% url 'users:myProducts' %}">Mis productos</a></li>                        
+                <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
+                <li><a href="{% url 'cart:cartSummary' %}" id="iconRef">
+                  <span id="iconImg" class="material-icons-outlined">shopping_cart</span>
+                </a></li>
+                <li><a href="{% url 'users:notifications' %}" id="iconRef"> 
+                  <span id="iconImg" class="material-icons-outlined">notifications</span>
+                </a></li>
+              {% else %}
+                <li><a href="{% url 'users:wishlist' %}">Lista de deseos</a></li>
+                <li><a href="{% url 'cart:cartSummary' %}" id="iconRef">
+                  <span id = "iconImg" class="material-icons-outlined">shopping_cart</span>
+                  </a></li>
+              {% endif %}
+            </ul>
 
-            <div class="footer-icons">
-                <a href="{% url 'core:index' %}" class="social">
-                    <img src="{% static 'store/fb.png' %}"  alt="socialImg" class="socialImg">
-                </a>
-                <a href="{% url 'core:index' %}" class="social">
-                    <img src="{% static 'store/insta.png' %}"  alt="socialImg" class="socialImg">
-                </a>
-                <a href="{% url 'core:index' %}" class="social">
-                    <img src="{% static 'store/twit.png' %}"  alt="socialImg" class="socialImg">
-                 </a>
+            <div class="buttons">
+              {% if user.is_authenticated %}
+                <a class="login" href="{% url 'users:logout' %}"><button>Log out</button></a>
+                <a class="signup" href="{% url 'users:myProfile' %}"><button>My Profile</button></a>
+              {% else %}
+                <a class="login" href="{% url 'users:loginV' %}"><button>Log in</button></a>
+                <a class="signup" href="{% url 'users:signup' %}"><button>Sign up</button></a>
+              {% endif %}
+            </div>*/ -->
+          </nav>
+        </header>
+
+        <div class="main">{% block body %} {% endblock body %}</div>
+          <footer class="page-footer font-small">
+            <div class="container text-center text-md-left">
+
+              <!-- Footer Left Column -->
+              <div class="row">
+                <div class="col-md-3 mx-auto">
+                  <h3>Any suggestions? Tell Us!</h3>
+                  <p class="footer-links">
+                      <i>Our e-mail</i>
+                      |
+                      <i>Call us!</i>
+                      |
+                      <i>Text us ;)</i>
+                  </p>            
+                </div>
+              
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Footer Middle Column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+                  <h3>Sobre nosotros</h3>
+                  <p>Somos un peque&ntildeo grupo de estudiantes de 5to semestre de la Facultad de Ciencias de la Computacion
+                    de la BUAP, entusiastas de la codificacion al servicio del usuario. </br>
+                  </p>
+                  <div class="col-md-12 ">
+                    <div class="mb-5 flex-center" id="footer-icons">
+                        <a href="{% url 'core:index' %}" class="social">
+                            <img src="{% static 'store/fb.png' %}"  alt="socialImg" class="socialImg">
+                        </a>
+                        <a href="{% url 'core:index' %}" class="social">
+                            <img src="{% static 'store/insta.png' %}"  alt="socialImg" class="socialImg">
+                        </a>
+                        <a href="{% url 'core:index' %}" class="social">
+                            <img src="{% static 'store/twit.png' %}"  alt="socialImg" class="socialImg">
+                        </a>              
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Footer Right Column -->
+                <div id="FAQ-Support" class="col-md-3 mx-auto">
+                  <a id="FAQ-link" href="{% url 'core:FAQ' %}"><h3>Preguntas Frecuentes</h3></a>            
+                </div>
+
+                <hr class="clearfix w-100 d-md-none">
             </div>
-
+            </div>
+            <!-- Copyright -->
+            <div id="copyright-id" class="footer-copyright text-center py-3">
+              © 2020 Copyright
+              <br>
+              Todos los derechos reservados
+            </div>
+          </footer>
         </div>
-        <div class="footer-right">
-        <ul class="nav_links">
-          <li><a href="{% url 'core:FAQ' %}"><p style="color:#ffd166;font-size: 20px;font-weight:bold;padding-bottom: 40px;">Preguntas Frecuentes</p></a></li>
-        </ul>
-        </div>
-    </footer>
+      </div>
   </body>
 </html>
