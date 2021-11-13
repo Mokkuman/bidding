@@ -13,7 +13,7 @@
 {% endblock title %}    
 
 {% block body %}
-    <div class="main">
+    <!-- <div class="main">
         <div class="container-signup">
             <div class="wrap-signup">
                 <div class="row justify-intro">
@@ -41,7 +41,7 @@
                                 <div class="form-master">
                                      {{ form | crispy }}
                                     <button id="submitBtn" type="submit" value="CreateUser">Crear usuario</button>   
-                                    <script src="{% static 'users/labels.js'%}"></script>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -49,5 +49,39 @@
                 </div>
             </div>
         </div>
+        
+    </div> -->
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left my-auto">
+                <div class="img-logo">
+                    <span class="logo-circle">
+                        <img id="logo2" src="{% static 'store/logo.png' %}" alt="PULGAPP">                        
+                    </span>
+                </div>
+                <h3 id="logoTittle">PULGAPP</h3>            <!-- Maybe add animations -->
+                <p id="loginText">¿Ya tienes una cuenta?</p>
+                <a class="login-button2" href="{% url 'users:loginV' %}"><button type="button" class="btn btn-block" id="buttonLogin">Iniciar sesion</button></a>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Ingresa tus datos</h3>
+                        <div class="row register-form">
+                            <div id="littlePadding" class="col">
+                                <div class="form-master">
+                                    <form method="POST" action="{% url 'users:signup' %}" >
+                                        {% csrf_token %}
+                                        {{ form | crispy }}
+                                    </form>
+                                </div>
+                                <button id="btnSubmit" type="submit" value="CreateUser">Crear usuario</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="{% static 'users/labels.js'%}"></script>
 {% endblock body %}

@@ -1,4 +1,256 @@
-/*LOGIN CSS */
+/*LogIn CSS*/
+.registration-form {
+    padding: 50px 0px;
+}
+
+.registration-form form {
+    background-color: rgb(209, 171, 171);
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);    
+}
+
+.registration-form .form-icon{
+	text-align: center;
+    background-color: #dde6f8;
+    border-radius: 50%;
+    font-size: 40px;
+    color: #917878; /* #917878 RGB: rgb(145, 120, 120)   */
+    width: 110px;
+    height: 110px;
+    margin: auto;
+    margin-bottom: 30px;
+    line-height: 100px;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.registration-form .form-group input {
+    text-decoration: none !important;
+    border: none;
+}
+
+#id_email {
+    border-radius: 20px;
+    border: 2px solid #916161;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    background: transparent;
+}
+
+#id_password {
+    border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #916161;
+    margin-bottom: 35px;
+}
+
+#btnSubmit {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#btnSubmit:hover {
+    color: bisque;
+}
+
+#loginQuestion {
+    font-size: 17px;
+    color: black;
+}
+
+#buttonLogin {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #dee9ff;
+}
+
+#buttonLogin {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+}
+
+#buttonLogin:hover {
+    color: bisque;
+}
+
+#buttonLogin a {
+    text-decoration: none;
+    color:#916161
+}
+
+#buttonLogin a:hover {
+    color: bisque;
+}
+
+.registration-form .social-media{
+    max-width: 600px;
+    background-color: rgb(209, 171, 171);
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+}
+
+/*SignUp CSS*/
+
+#logoTittle {
+    margin-bottom: 20px;
+}
+
+#loginText {
+    margin-bottom: 0px;
+}
+
+.logo-circle {
+    display: inline-block;
+    height: 110px;
+    width: 120px;
+    line-height: 60px;
+    border-radius: 40px;
+    background-color: #a1c0c2;
+    text-align: center;
+
+}
+
+#logo2 {
+    vertical-align: middle;
+    padding-top: 1.5px;
+    padding-right: 3px;
+    height: 100px;
+}
+
+.register {
+    /*background: rgb(114, 93, 93); linear-gradient(left, #3931af, #00c6ff) !important;*/
+    background: -webkit-linear-gradient(left, #b8b6ca, #67858d);
+    margin-top: 3%;
+    padding: 3%;
+    margin-bottom: 3%;
+}
+
+.register-left {
+    text-align: center;
+    color: black;
+    margin-top: 4%;
+}
+
+.register-right {
+    background: #43406b;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+
+.register-left img {     
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;    
+} 
+
+.register-left span {
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;    
+}
+
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.register .register-form {
+    padding: 10%;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.register-heading {
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: beige;
+    font-size: 50px;
+}
+
+#littlePadding {
+    padding-left: 20px;
+}
+
+.form-master input[type=email] {
+    background: #7fa0aa !important;
+    border-bottom: none !important;
+    margin-bottom: 5px !important;
+    font-size: 14px !important;
+    border: none !important;
+}
+
+.form-master label {
+    color: beige;
+}
+
+.form-group input { 
+    background: #7fa0aa;
+    border-bottom: none;
+    margin-bottom: 5px;
+    font-size: 14px;
+    border: none;
+}
+
+#hint_id_password1 ul {
+    color: beige;
+    list-style-type: none !important;
+}
+
+#hint_id_password2 {
+    color: beige !important;
+    margin-top: 0px;
+}
+
+/*#hint_id_password2:before {
+    content: "\A";
+    white-space: pre;
+} */
+
+/*LOGIN CSS 
 .wrap-button {
     width: 50%;
     display: block;
@@ -70,7 +322,7 @@
 
 .wrap-login2 p {
     color: black;
-    /*text-transform: uppercase;*/
+    /*text-transform: uppercase;
     font-size: 35px;
 }
 
@@ -121,7 +373,7 @@ a:hover {
 }
 
 
-/* SIGNUP CSS */
+/* SIGNUP CSS 
 .main {
     box-sizing: border-box;
 }
@@ -221,39 +473,8 @@ a:hover {
     border: 1px solid #163d49;
 }
 
-.logo-circle {
-    display: inline-block;
-    height: 110px;
-    width: 120px;
-    line-height: 60px;
-    border-radius: 40px;
-    background-color: #a1c0c2;
-    text-align: center;
-
-}
-
-.logo2 {
-    vertical-align: middle;
-    padding-top: 1.5px;
-    padding-right: 3px;
-    height: 100px;
-}
-
 #hint_id_password1 {
     color: rgb(61, 52, 39);
-}
-
-.form-master input[type=email] {
-    width: 40% !important;
-    background: #7fa0aa !important;
-    border-bottom: none !important;
-    margin-bottom: 5px !important;
-    font-size: 14px !important;
-    border: none !important;
-}
-
-.form-group input { 
-    border: none;
 }
 
 .form-master {
@@ -270,15 +491,6 @@ a:hover {
     background: #7fa0aa;
     box-shadow: none;
     font-size: 14px;
-}
-
-#hint_id_password1 {
-    list-style-type: none !important;
-}
-
-#hint_id_password2:before {
-    content: "\A";
-    white-space: pre;
 }
 
 #submitBtn {
@@ -306,7 +518,7 @@ a:hover {
     color: #d34848;
 }
 
-/*Responsive prototype  IGNORE */
+/*Responsive prototype  IGNORE 
 @media (min-width: 576px) {
     .container-signup {
       max-width: 540px;
@@ -327,4 +539,4 @@ a:hover {
     .container {
       max-width: 1140px;
     }
-}
+}*/
