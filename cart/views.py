@@ -6,27 +6,32 @@ from django.http import JsonResponse
 from users.models import Bid, User
 # Create your views here.
 
+#Vista del carrito
 def cartSummary(request):
     cart = Cart(request)
     if not request.user.is_authenticated:
         return render(request,'store/cart.html',{'cart':cart})
     bids = Bid.objects.filter(user=request.user)
-    biddedProducts = []
-    for bid in bids:
-        biddedProducts.append(bid.product)
     return render(request,'store/cart.html',{'cart':cart,
-                                             'biddedProducts':biddedProducts})
+                                             'biddedProducts':bids})
     
 
+#Agrega al carrito el producto de stock
 def cartAdd(request):
     cart = Cart(request)
+    print("Hola")
     if request.POST.get('action')=='post':
         product_id = int(request.POST.get('productid'))
         product = get_object_or_404(StockProduct,id=product_id)
-        cart.add(product=product)
-        response = JsonResponse({'test':'data'})
-        #Bajar disponibilidad
-        #print("Compra exitosa!") use JavaScript alert() or some other UI notification
+        if product.inventory > 0:
+            cart.add(product=product)
+            product.inventory-=1
+            product.save()
+            response = JsonResponse({'test':'data'})
+            #print("Compra exitosa!") use JavaScript alert() or some other UI notification
+        else:
+            print("No hay stock!")
+            return render(request, "store/stockProductTemplate.html", {"product" : product})
         return response
     
 def cartDelete(request):

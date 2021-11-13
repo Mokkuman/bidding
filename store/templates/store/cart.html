@@ -90,17 +90,24 @@
               {% for item in biddedProducts  %}
               <div data-index="{{item.id}}" class="row mb-4 border product-item">
                 <div class="col-md-3 col-lg-2 order-md-first bg-light">
-                  <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ item.image.url }}">
+                  <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ item.product.image.url }}">
                 </div>
                 <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
-                  <a href="http://127.0.0.1:8000/products/bid/{{item.id}}" class="text-decoration-none text-reset">
-                    <h1 class="h5 pt-2">{{ item.productName }}</h1>
+                  <a href="http://127.0.0.1:8000/products/bid/{{item.product.id}}" class="text-decoration-none text-reset">
+                    <h1 class="h5 pt-2">{{ item.product.productName }}</h1>
                   </a>
                   <div class="border">
                     <div class="col border-bottom">
                       <div class="row p-3">
                         <div class="col-6">Artículo de apuesta</div>
-                        <div class="col-6 text-end"><span class="h6 fw-bold">Tu apuesta: ${{ item.currentBid }}</span></div>
+                        <div class="col-6 text-end"><span class="h6 fw-bold">
+                          {% if item.userBid >= item.product.currentBid %}
+
+                          Eres la puja más alta! con: ${{ item.userBid }}
+                          {%else%}
+                          No eres la puja más alta, con ${{ item.userBid }}
+                          {%endif%}
+                        </span></div>
                       </div>
                     </div>
                     <div class="col">

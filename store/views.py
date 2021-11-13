@@ -1,7 +1,5 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-
-
 from .models import BidProduct, Product,StockProduct
 from store.forms import BidForm, BidProductForm,StockProductForm
 from users.models import Bid, User
@@ -28,9 +26,18 @@ def goToBidProduct(request,id_product):
             print("userMoney: "+str(userMoney))
             print("product current bid: "+str(productCurrentBid))
             if user_bid < userMoney and user_bid > productCurrentBid:
+                try:
+                    #Puede generarse un error donde no exista el Bid
+                    bid = Bid.objects.get(user=request.user,product=product)
+                    print("Sobreescribiendo puja")
+                    bid.userBid = user_bid
+                    bid.save()
+                except:
+                    print("Creando puja")
+                    newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
                 theForm.save()
-                newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
                 print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
+                
             else:
                 print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
     return render(request, "store/bidProductTemplate.html", {"product" : product, "form":theForm})
