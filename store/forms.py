@@ -14,6 +14,6 @@ class BidProductForm(forms.ModelForm):
         exclude = ['seller', 'bidWinner', 'currentBid']
     
 class StockProductForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = StockProduct
         exclude = ['seller']

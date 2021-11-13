@@ -5,9 +5,6 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>INDEX <h1>
-    <br/>
-    <h1>Hola, {{user.firstName|default:'mi estimado'}}!<h1>
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="pb-3 h5">All Products</div>
@@ -21,7 +18,8 @@
                                 <a class="text-dark text-decoration-none" href="http://127.0.0.1:8000/products/stock/{{product.id}}">{{product.productName}}</a>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">9min read</small>
+                                <small class="text-muted">{{product.inventory}} unidades disponibles!</small>
+                                <small class="text-muted">${{product.price}} </small>
                             </div>
                         </div>
                     </div>
@@ -36,7 +34,7 @@
                                 <a class="text-dark text-decoration-none" href="http://127.0.0.1:8000/products/bid/{{product.id}}">{{product.productName}}</a>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">9min read</small>
+                                <small class="text-muted">Puja más alta: ${{product.currentBid}}</small>
                             </div>
                         </div>
                     </div>

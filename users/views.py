@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from users.models import User
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm
+from store.models import BidProduct,StockProduct
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -45,6 +46,7 @@ def goToProfile(request):
     #userName = curret_user.lastName
     return render(request, "users/myProfile.html",{'user':curret_user})
 
+@login_required
 def updateProfile(request):
     if request.method == "POST":
         if 'UpdateProfile' in request.POST:
@@ -74,6 +76,7 @@ def deleteUser(request):
             return redirect('users:myProfile')        
     return render(request,"users/deleteUser.html")
 
+@login_required
 def updateMoney(request):
     if request.method=="POST":
         if "UpdateMoney" in request.POST:
@@ -93,8 +96,13 @@ def updateMoney(request):
 def wishlist(request):
     return render(request,"users/wishlist.html")
 
+@login_required
 def myProducts(request):
-    return render(request,"users/myProducts.html")
+    context={
+        'bidProducts':BidProduct.objects.filter(seller=request.user),
+        'stockProducts':StockProduct.objects.filter(seller=request.user)
+    }
+    return render(request,"users/myProducts.html",context)
 
 def notifications(request):
     return render(request,"users/notifications.html")

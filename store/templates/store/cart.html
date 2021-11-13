@@ -7,8 +7,6 @@
 {% if user.is_authenticated %}
   {% block body %}
     <!--Mostrar el carrito de compras xd-->
-    Carrito
-    
         <main class="pt-5">
           <div class="container" style="max-width: 1000px">
             <div class="col-12">
@@ -60,29 +58,19 @@
                   <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ product.image.url }}">
                 </div>
                 <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
-                  <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-reset">
-                    <h1 class="h5 pt-2">{{ product.title }}</h1>
+                  <a href="http://127.0.0.1:8000/products/stock/{{product.id}}" class="text-decoration-none text-reset">
+                    <h1 class="h5 pt-2">{{ product.productName }}</h1>
                   </a>
                   <div class="border">
                     <div class="col border-bottom">
                       <div class="row p-3">
-                        <div class="col-6">Hardback Book</div>
-                        <div class="col-6 text-end"><span class="h6 fw-bold">£{{ product.price }}</span></div>
+                        <div class="col-6">Unidades: {{item.qty}}</div>
+                        <div class="col-6 text-end"><span class="h6 fw-bold">${{ product.price }}</span></div>
                       </div>
                     </div>
                     <div class="col">
                       <div class="row p-3">
                         <div class="col-12">
-                          <label for="select">Qty</label>
-                          <select id="select{{product.id}}">
-                            <option selected>
-                              {{item.qty}}
-                            </option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                          </select>
                           <button type="button" id="update-button" data-index="{{product.id}}"
                             class="btn btn-outline-secondary btn-sm update-button">
                             Update
@@ -99,26 +87,40 @@
               </div>
               {% endwith %}
               {% endfor %}
+              {% for item in biddedProducts  %}
+              <div data-index="{{item.id}}" class="row mb-4 border product-item">
+                <div class="col-md-3 col-lg-2 order-md-first bg-light">
+                  <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ item.image.url }}">
+                </div>
+                <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+                  <a href="http://127.0.0.1:8000/products/bid/{{item.id}}" class="text-decoration-none text-reset">
+                    <h1 class="h5 pt-2">{{ item.productName }}</h1>
+                  </a>
+                  <div class="border">
+                    <div class="col border-bottom">
+                      <div class="row p-3">
+                        <div class="col-6">Artículo de apuesta</div>
+                        <div class="col-6 text-end"><span class="h6 fw-bold">Tu apuesta: ${{ item.currentBid }}</span></div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="row p-3">
+                        <div class="col-12">
+                          <button type="button" id="delete-button" data-index="{{product.id}}"
+                            class="btn btn-outline-secondary btn-sm delete-button">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            
-          </div>
-
-          {% if user.is_authenticated %}
-            <h2>Mis Pujas:<h2>
-      
-              {% for biddedProduct in biddedProducts %}
-                  <h3>Producto: {{ biddedProduct.productName }} </h3>
-                  <p>Bid más alto: ${{ biddedProduct.currentBid }} </p>
-                  <p>Condición: {{ biddedProduct.condition }} </p>
-                  <img alt="BidProduct Image" src="{{biddedProudct.image.url}}"
-                              width="260"/>
-                  <p> Más información sobre producto: <a href="{% url 'store:bidProductPage' biddedProduct.id %}"> Aquí</a>
               {% endfor %}
-            {% endif %}
-
+              </div>
+            </div>            
+          </div>
         </main>
-        
 
           <script>
             $(document).on('click','.delete-button',function(e){

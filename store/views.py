@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+
+
 from .models import BidProduct, Product,StockProduct
-from store.forms import BidForm, BidProductForm
+from store.forms import BidForm, BidProductForm,StockProductForm
 from users.models import Bid, User
 from django.views.generic.edit import CreateView
 
@@ -37,10 +39,13 @@ def goToStockProduct(request,id_product):
     product = StockProduct.objects.get(id=id_product)
     return render(request, "store/stockProductTemplate.html", {"product" : product})
 
+def selectProduct(request):
+    return render(request,"store/uploadProduct.html")
+
 class BidProductCreateView(CreateView):
     model = BidProduct
     form_class = BidProductForm
-    template_name = 'store/uploadProduct.html'
+    template_name = 'store/uploadBidProduct.html'
     #success_url = 'uploadProduct'
     
     #def get_success_url(self):
@@ -51,3 +56,14 @@ class BidProductCreateView(CreateView):
         bidProduct.seller = User.objects.get(id=self.request.user.id) 
         bidProduct.save()
         return redirect("core:index")
+
+class StockProductCreateView(CreateView):
+    model = StockProduct
+    form_class = StockProductForm
+    template_name = 'store/uploadStockProduct.html'
+    
+    def form_valid(self,form):
+        stockProduct = form.save(commit=False)
+        stockProduct.seller = User.objects.get(id=self.request.user.id)
+        stockProduct.save()
+        return redirect('core:index')
