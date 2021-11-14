@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm, fields
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
-from store.models import BidProduct
+from store.models import BidProduct,StockProduct
 
 class UserForm(UserCreationForm):
     class Meta:
@@ -27,3 +27,13 @@ class UpdateMoneyForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['money']
+
+class UpdateStock(forms.ModelForm):
+    class Meta:
+        model = StockProduct
+        fields = ['productName','description','category','price','inventory','isActive']
+        
+class UpdateBid(forms.ModelForm):
+    class Meta:
+        model = BidProduct
+        fields = ['productName','description','category','isActive']

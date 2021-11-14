@@ -1,0 +1,21 @@
+{% extends 'core/layout.html' %} 
+{% load static %}   
+
+{% block cssPath %} 
+
+{% endblock cssPath %}
+
+{% block title %}Configuracion{% endblock title%}
+    
+{% block body %}
+    <h1>Modifica tus datos</h1>
+    <div class="form">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button id="submitBtn" type="submit" name="UpdateProduct">Realizar cambios</button>
+            <button id="submitBtn" type="submit" name="Delete">Eliminar</button>
+            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+        </form>
+    </div>
+{% endblock body %}

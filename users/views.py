@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from users.models import User
-from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm
+from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
-from django.shortcuts import render, redirect,HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.views.generic.detail import DetailView
+from django.http import HttpResponseNotAllowed
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -103,6 +105,74 @@ def myProducts(request):
         'stockProducts':StockProduct.objects.filter(seller=request.user)
     }
     return render(request,"users/myProducts.html",context)
+
+class UpdateStockGeneral(DetailView):
+    form_class = UpdateStock
+    template_name = "users/updateMyStockProduct.html"
+    
+    def get(self,request, *args, **kwargs):
+        try:
+            product = StockProduct.objects.get(id=kwargs['id_product'],seller=request.user)
+            data={'productName':product.productName,'description':product.description,
+                'category':product.category,'price':product.price,'inventory':product.inventory
+                ,'isActive':product.isActive}
+            self.form_class.initial = data
+            form = self.form_class(initial=data)
+            return render(request,"users/updateMyStockProduct.html",{"form":form})
+        except:
+            return HttpResponseNotAllowed("Not allowed")
+    
+    def post(self,request,*args, **kwargs):
+        if "UpdateProduct" in request.POST and (not "Delete" in request.POST):
+            print("Dentro de UpdateProduct")
+            form = UpdateStock(request.POST,request.FILES,instance=StockProduct.objects.get(id=kwargs['id_product']))
+            if form.is_valid():
+                form.save()
+                return redirect('users:myProducts')
+            return render(request,self.template_name,{'form':form})
+        elif not "Cancel" in request.POST:
+            #Parte para eliminar el producto
+            print("Dentro de Eliminar")
+            return redirect('users:myProducts')
+        else:
+            print("Dentro de cancelar")
+            return redirect('users:myProducts')
+        
+class UpdateBidGeneral(DetailView):
+    form_class = UpdateBid
+    template_name = "users/updateMyStockProduct.html"
+    
+    def get(self,request, *args, **kwargs):
+        try:
+            product = BidProduct.objects.get(id=kwargs['id_product'],seller=request.user)
+            data={'productName':product.productName,'description':product.description,
+                'category':product.category,'isActive':product.isActive}
+            self.form_class.initial = data
+            form = self.form_class(initial=data)
+            return render(request,"users/updateMyBidProduct.html",{"form":form})
+        except:
+            print("No puedes acceder a esta página porque no eres el propietario del producto")
+            return HttpResponseNotAllowed("Not allowed")
+    
+    def post(self,request,*args, **kwargs):
+        if "UpdateProduct" in request.POST:
+            print("Dentro de UpdateProduct")
+            form = UpdateBid(request.POST,request.FILES,instance=BidProduct.objects.get(id=kwargs['id_product']))
+            if form.is_valid():
+                form.save()
+                return redirect('users:myProducts')
+            return render(request,self.template_name,{'form':form})
+        elif "End" in request.POST:
+            #Parte para escoger ganador de bid
+            print("Dentro de Terminar")
+            return redirect('users:myProducts')
+        elif "Delete" in request.POST:
+            #Parte para eliminar producto
+            print("Dentro de eliminar")
+            return redirect('users:myProducts')
+        else:
+            print("Dentro de cancelar")
+            return redirect('users:myProducts')
 
 def notifications(request):
     return render(request,"users/notifications.html")
