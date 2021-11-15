@@ -6,34 +6,4 @@
 
 {% block body %}
     Notificaciones:
-            {% for notification in notifications %}
-              <div data-index="{{notification.fromUser}}" class="row mb-4 border product-item">
-                <div class="col-md-3 col-lg-2 order-md-first bg-light">
-                  <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ notification.fromUser.profilePic.url }}">
-                </div>
-                <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
-                  <a href="http://127.0.0.1:8000/products/stock/{{product.id}}" class="text-decoration-none text-reset">
-                    <h1 class="h5 pt-2">De: {{ notification.fromUser.firstName }}</h1>
-                  </a>
-                  <div class="border">
-                    <div class="col border-bottom">
-                      <div class="row p-3">
-                        <div class="col-6">Mensaje: </div>
-                            <b>{{ notification.message }}</b>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="row p-3">
-                        <div class="col-12">
-                          <button type="button" id="delete-button" data-index="{{product.id}}"
-                            class="btn btn-outline-secondary btn-sm delete-button">
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
 {% endblock body %}
