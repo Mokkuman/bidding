@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import User,Bid
+from users.models import User, UserNotification
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
 from django.shortcuts import render, redirect
@@ -28,8 +28,12 @@ def signup(request):
     if request.method == "POST":
         theForm = UserForm(request.POST) #get the form filled out 
         if theForm.is_valid():
+            adminEmail = "droseher@gmail.com"
             newUser = theForm.save(commit=False)
             newUser.save()
+            newMessage = f"Bienvenido {newUser.firstName}! Gracias por crear una cuenta PulgApp!"
+            from_user = User.objects.get(email=adminEmail)
+            UserNotification.objects.create(toUser = newUser, message = newMessage, fromUser = from_user)
             login(request,newUser)
             return redirect('core:index')
     else:
@@ -130,11 +134,9 @@ class UpdateStockGeneral(DetailView):
                 form.save()
                 return redirect('users:myProducts')
             return render(request,self.template_name,{'form':form})
-        elif "Delete" in request.POST:
+        elif not "Cancel" in request.POST:
             #Parte para eliminar el producto
             print("Dentro de Eliminar")
-            product = StockProduct.objects.get(id=kwargs['id_product'])
-            product.delete()
             return redirect('users:myProducts')
         else:
             print("Dentro de cancelar")
@@ -166,30 +168,17 @@ class UpdateBidGeneral(DetailView):
             return render(request,self.template_name,{'form':form})
         elif "End" in request.POST:
             #Parte para escoger ganador de bid
-            product = BidProduct.objects.get(id = kwargs['id_product'])
-            bid = Bid.objects.filter(product = product.id)
-            for b in bid:
-                if b.userBid == product.currentBid:
-                    product.bidWinner = b.user
-                    product.isActive = False
-                    product.save()
-                    print("Producto actualizado, ganador seleccionado")
-                    print("Ahora el producto no es visible")
-                    #Enviar notificaciones
-                else:
-                    b.delete()
+            print("Dentro de Terminar")
             return redirect('users:myProducts')
         elif "Delete" in request.POST:
             #Parte para eliminar producto
             print("Dentro de eliminar")
-            product = BidProduct.objects.get(id = kwargs['id_product'])
-            bid = Bid.objects.filter(product = product.id)
-            bid.delete()
-            product.delete()
             return redirect('users:myProducts')
         else:
             print("Dentro de cancelar")
             return redirect('users:myProducts')
 
+@login_required
 def notifications(request):
-    return render(request,"users/notifications.html")
+    userNotifications = UserNotification.objects.filter(toUser = request.user)
+    return render(request,"users/notifications.html",{"notifications":userNotifications})

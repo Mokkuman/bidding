@@ -1,6 +1,6 @@
 from django.db import models
 #from store.models import Product, BidProduct
-
+from django.utils import timezone
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils.translation import gettext_lazy as _
@@ -84,3 +84,29 @@ class Bid(models.Model):
 
     def __str__(self):
         return self.user.getEmail() + "-" + self.product.productName + "-$" + str(self.userBid)
+
+class Notification(models.Model):
+    toUser = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    message = models.CharField(max_length=200)
+    hasBeenRead = models.BooleanField(default = False)
+    date = models.DateTimeField()
+    
+    class Meta:
+        abstract = True
+    
+    def save(self, *args, **kwargs):
+        if not self.date:
+            self.date = timezone.now()
+        super(Notification, self).save(*args, **kwargs)
+        
+class UserNotification(Notification):
+    fromUser = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="fromUser")
+    
+    def __str__(self):
+        return f"From: {self.fromUser.email}, to: {self.toUser.email}"
+
+class BidNotification(Notification):
+    fromBidProduct = models.ForeignKey("store.BidProduct", null=True, on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return f"BidWinner: {self.toUser.email}, Product: {self.fromBidProduct.productName }"
