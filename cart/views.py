@@ -1,7 +1,7 @@
 from django.http import response
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .cart import Cart
-from store.models import StockProduct
+from store.models import BidProduct, StockProduct
 from django.http import JsonResponse
 from users.models import Bid, User
 # Create your views here.
@@ -42,3 +42,18 @@ def cartDelete(request):
         cartTotal = cart.get_total_price()
         response = JsonResponse({'subtotal':cartTotal})
         return response
+    
+def deleteBid(request, bid_id):
+    bid = Bid.objects.get(pk = bid_id)
+    bidProduct = bid.product
+       
+    bid.delete()
+    if not Bid.objects.filter(product = bidProduct):
+        print("No hay bidders. CurBid = minBid")
+        bidProduct.currentBid = bidProduct.minBid
+    else:
+        prevBid = Bid.objects.all().last()
+        bidProduct.currentBid = prevBid.userBid
+        print("CurBid actualizada a la última puja")
+    bidProduct.save()
+    return redirect('cart:cartSummary')

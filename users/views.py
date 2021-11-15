@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import User,Bid, UserNotification
+from users.models import BidNotification, User,Bid, UserNotification
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
 from django.shortcuts import render, redirect
@@ -172,16 +172,23 @@ class UpdateBidGeneral(DetailView):
             #Parte para escoger ganador de bid
             product = BidProduct.objects.get(id = kwargs['id_product'])
             bid = Bid.objects.filter(product = product.id)
+            
             for b in bid:
+                bidder = b.user
                 if b.userBid == product.currentBid:
                     product.bidWinner = b.user
                     product.isActive = False
                     product.save()
                     print("Producto actualizado, ganador seleccionado")
                     print("Ahora el producto no es visible")
-                    #Enviar notificaciones
+                    #Enviar notificacion al ganador
+                    newMessage = f'¡Felicidades {b.user.firstName}! ¡Has ganado el bid para el producto: {product.productName}! Procede a pagar por favor.'
+                    #BidNotification.objects.create(toUser = bidder, message = newMessage, fromBidProduct = product)    
                 else:
+                    #Enviar notificaciones a los perdedores
+                    newMessage = f'Lo sentimos, {b.user.firstName}. El bid del producto:  {product.productName} ha concluido y NO ganaste.'
                     b.delete()
+                BidNotification.objects.create(toUser = bidder, message = newMessage,fromBidProduct = product)
             return redirect('users:myProducts')
         elif "Delete" in request.POST:
             #Parte para eliminar producto
@@ -194,7 +201,11 @@ class UpdateBidGeneral(DetailView):
         else:
             print("Dentro de cancelar")
             return redirect('users:myProducts')
+        
 
+
+@login_required
 def notifications(request):
     userNotifications = UserNotification.objects.filter(toUser = request.user)
-    return render(request,"users/notifications.html",{"notifications":userNotifications})
+    bidNotifications = BidNotification.objects.filter(toUser = request.user)
+    return render(request,"users/notifications.html",{"notifications":userNotifications, "bidNotifications":bidNotifications})
