@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import User,Bid
+from users.models import User,Bid, UserNotification
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
 from django.shortcuts import render, redirect
@@ -28,8 +28,12 @@ def signup(request):
     if request.method == "POST":
         theForm = UserForm(request.POST) #get the form filled out 
         if theForm.is_valid():
+            adminEmail = "droseher@gmail.com"
             newUser = theForm.save(commit=False)
             newUser.save()
+            newMessage = f"Bienvenido {newUser.firstName}! Gracias por crear una cuenta PulgApp!"
+            from_user = User.objects.get(email=adminEmail)
+            UserNotification.objects.create(toUser = newUser, message = newMessage, fromUser = from_user)
             login(request,newUser)
             return redirect('core:index')
     else:
@@ -192,4 +196,5 @@ class UpdateBidGeneral(DetailView):
             return redirect('users:myProducts')
 
 def notifications(request):
-    return render(request,"users/notifications.html")
+    userNotifications = UserNotification.objects.filter(toUser = request.user)
+    return render(request,"users/notifications.html",{"notifications":userNotifications})
