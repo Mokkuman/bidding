@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.http import HttpResponseNotAllowed
 from .models import BidProduct, Product,StockProduct
 from store.forms import BidForm, BidProductForm,StockProductForm
 from users.models import Bid, User
@@ -14,37 +15,43 @@ def goToBidProduct(request,id_product):
     product = BidProduct.objects.get(id=id_product)
     theForm = BidForm(instance=product)
     productCurrentBid = product.currentBid
-
-    if request.method == "POST":
-        theForm = BidForm(request.POST, instance=product)
-        if not request.user.is_authenticated:
-            return redirect('users:loginV')
-        if theForm.is_valid():
-            userMoney = request.user.money
-            user_bid = theForm.cleaned_data['currentBid']
-            print("userBid: "+str(user_bid))
-            print("userMoney: "+str(userMoney))
-            print("product current bid: "+str(productCurrentBid))
-            if user_bid < userMoney and user_bid > productCurrentBid:
-                try:
-                    #Puede generarse un error donde no exista el Bid
-                    bid = Bid.objects.get(user=request.user,product=product)
-                    print("Sobreescribiendo puja")
-                    bid.userBid = user_bid
-                    bid.save()
-                except:
-                    print("Creando puja")
-                    newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
-                theForm.save()
-                print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
+    if product.isActive and product.bidWinner==None:#Condición para saber si sigue activo (Cuando termine la puja o el usuario así lo decida)
+        print(product.bidWinner)#Debe mostrar None en terminal
+        if request.method == "POST":
+            theForm = BidForm(request.POST, instance=product)
+            if not request.user.is_authenticated:
+                return redirect('users:loginV')
+            if theForm.is_valid():
+                userMoney = request.user.money
+                user_bid = theForm.cleaned_data['currentBid']
+                print("userBid: "+str(user_bid))
+                print("userMoney: "+str(userMoney))
+                print("product current bid: "+str(productCurrentBid))
+                if user_bid < userMoney and user_bid > productCurrentBid:
+                    try:
+                        #Puede generarse un error donde no exista el Bid
+                        bid = Bid.objects.get(user=request.user,product=product)
+                        print("Sobreescribiendo puja")
+                        bid.userBid = user_bid
+                        bid.save()
+                    except:
+                        print("Creando puja")
+                        newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
+                    theForm.save()
+                    print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
                 
-            else:
-                print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
-    return render(request, "store/bidProductTemplate.html", {"product" : product, "form":theForm})
+                else:
+                    print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
+        return render(request, "store/bidProductTemplate.html", {"product" : product, "form":theForm})
+    return HttpResponseNotAllowed("Not allowed")
 
 def goToStockProduct(request,id_product):
     product = StockProduct.objects.get(id=id_product)
-    return render(request, "store/stockProductTemplate.html", {"product" : product})
+    if product.isActive:
+        return render(request, "store/stockProductTemplate.html", {"product" : product})
+    else:
+        print("No puedes entrar! El usuario decidió que ya no está activo el producto")
+        return HttpResponseNotAllowed("Not allowed")
 
 def selectProduct(request):
     return render(request,"store/uploadProduct.html")

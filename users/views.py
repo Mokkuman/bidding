@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import User
+from users.models import User,Bid
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
 from django.shortcuts import render, redirect
@@ -130,9 +130,11 @@ class UpdateStockGeneral(DetailView):
                 form.save()
                 return redirect('users:myProducts')
             return render(request,self.template_name,{'form':form})
-        elif not "Cancel" in request.POST:
+        elif "Delete" in request.POST:
             #Parte para eliminar el producto
             print("Dentro de Eliminar")
+            product = StockProduct.objects.get(id=kwargs['id_product'])
+            product.delete()
             return redirect('users:myProducts')
         else:
             print("Dentro de cancelar")
@@ -164,11 +166,26 @@ class UpdateBidGeneral(DetailView):
             return render(request,self.template_name,{'form':form})
         elif "End" in request.POST:
             #Parte para escoger ganador de bid
-            print("Dentro de Terminar")
+            product = BidProduct.objects.get(id = kwargs['id_product'])
+            bid = Bid.objects.filter(product = product.id)
+            for b in bid:
+                if b.userBid == product.currentBid:
+                    product.bidWinner = b.user
+                    product.isActive = False
+                    product.save()
+                    print("Producto actualizado, ganador seleccionado")
+                    print("Ahora el producto no es visible")
+                    #Enviar notificaciones
+                else:
+                    b.delete()
             return redirect('users:myProducts')
         elif "Delete" in request.POST:
             #Parte para eliminar producto
             print("Dentro de eliminar")
+            product = BidProduct.objects.get(id = kwargs['id_product'])
+            bid = Bid.objects.filter(product = product.id)
+            bid.delete()
+            product.delete()
             return redirect('users:myProducts')
         else:
             print("Dentro de cancelar")
