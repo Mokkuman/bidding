@@ -25,8 +25,8 @@ def cartAdd(request):
         product = get_object_or_404(StockProduct,id=product_id)
         if product.inventory > 0:
             cart.add(product=product)
-            product.inventory-=1
-            product.save()
+            #product.inventory-=1 Hacer esto en el checkout
+            #product.save()
             response = JsonResponse({'test':'data'})
             #print("Compra exitosa!") use JavaScript alert() or some other UI notification
         else:
