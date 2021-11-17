@@ -1,12 +1,34 @@
 {% extends 'core/layout.html' %}
 
+{% load static %}   
+
 {% block title %}
     Subir Producto
 {% endblock title %}
 
+{% block cssPath %}
+    <link rel="stylesheet" href="{% static 'store/productUpload.css' %}"  type="text/css"/>
+{% endblock cssPath %}
+
 {% block body %}
     <!--Form para subir un producto-->
-    <h1>Qué tipo de producto deseas subir</h1>
-    <a href="{% url 'store:uploadBidProduct' %}" ><button id="submitBtn" type="submit" name="UploadProduct">De apuesta</button></a>
-    <a href="{% url 'store:uploadStockProduct' %}"><button id="submitBtn" type="submit" name="Cancel">De stock</button></a>
+        <div class="container upload-form">
+            <div class="product-title">
+                <h1>¿Qué tipo de producto deseas subir?</h1>
+            </div>
+            <div class="product-selection">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <a href="{% url 'store:uploadBidProduct' %}" ><button id="bidButton" type="submit" name="UploadProduct">De apuesta</button></a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <a href="{% url 'store:uploadStockProduct' %}"><button id="stockButton" type="submit" name="Cancel">De stock</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </diV>
 {% endblock body %}

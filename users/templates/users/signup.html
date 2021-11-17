@@ -13,44 +13,6 @@
 {% endblock title %}    
 
 {% block body %}
-    <!-- <div class="main">
-        <div class="container-signup">
-            <div class="wrap-signup">
-                <div class="row justify-intro">
-                    <div class="intro-text">
-                        <h1>CREA UNA CUENTA</h1>
-                    </div>
-                </div>
-                <div class="row justify-intro">
-                    <div class="wrap">
-                        <div class="subheader-logo justify-intro text-wrap">
-                            <div class="subheader2">
-                                <div class="img-logo">
-                                    <span class="logo-circle">
-                                        <img class="logo2" src="{% static 'store/logo.png' %}" alt="PULGAPP">
-                                    </span>
-                                </div>
-                                <h2>PULGAPP</h2>
-                                <p>¿Ya tienes una cuenta?</p>
-                                <a class="login-button2" href="{% url 'users:loginV' %}">Iniciar sesion</a>
-                            </div>
-                        </div>
-                        <div class="justify-intro signup2">
-                            <form method="POST" action="{% url 'users:signup' %}" >
-                                {% csrf_token %}
-                                <div class="form-master">
-                                     {{ form | crispy }}
-                                    <button id="submitBtn" type="submit" value="CreateUser">Crear usuario</button>   
-                                    
-                                </div>
-                            </form>
-                        </div>
-                    <div class="wrap">
-                </div>
-            </div>
-        </div>
-        
-    </div> -->
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left my-auto">

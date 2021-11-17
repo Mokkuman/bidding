@@ -1,0 +1,61 @@
+.product-title {
+    text-align: center;
+    margin-bottom: 50px;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    
+}
+
+.product-title h1 {
+    color: #a37070;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.upload-form {
+    background-color: rgb(209, 171, 171);
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);  
+}
+
+#bidButton {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#bidButton:hover {
+    color: bisque;
+}
+
+#stockButton {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#stockButton:hover {
+    color: bisque;
+}
+

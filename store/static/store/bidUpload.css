@@ -1,0 +1,54 @@
+.blankspace1 {
+    margin-bottom: 30px;
+}
+
+.blankspace2 {
+    margin-top: 30px;
+}
+
+.register {
+    padding: 30px 30px 30px 30px;
+}
+
+.form-title {
+    margin: auto;
+    max-width: 670px;
+    font-size: 30px;
+    background-color: rgb(228, 179, 179);
+    border-bottom: 6px solid rgb(206, 194, 194);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    text-align: center;
+}
+
+.form-product {
+    max-width: 670px;
+    text-align: center;
+    background-color: rgb(209, 171, 171);
+    margin: auto;
+    padding: 50px 70px;
+    border-right: 30px;
+    border-left: 30px;
+    border-top: 30px;
+    border-bottom: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);  
+}
+
+#submitBtn {
+    text-align: center;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    
+}
+
+#submitBtn:hover {
+    color: bisque;
+}

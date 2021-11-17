@@ -1,5 +1,5 @@
 function button() {
-    var coll = document.getElementsByClassName("faq-button");
+    var coll = document.getElementsByClassName("accordion-button");
     var i;
 
     for (i = 0; i < coll.length; i++) {
