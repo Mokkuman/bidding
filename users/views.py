@@ -2,6 +2,7 @@ from django.shortcuts import render
 from users.models import BidNotification, User,Bid, UserNotification
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
+from cart.models import Order, OrderItem,OrderBid
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseNotAllowed
@@ -202,10 +203,17 @@ class UpdateBidGeneral(DetailView):
             print("Dentro de cancelar")
             return redirect('users:myProducts')
         
-
-
 @login_required
 def notifications(request):
     userNotifications = UserNotification.objects.filter(toUser = request.user)
     bidNotifications = BidNotification.objects.filter(toUser = request.user)
     return render(request,"users/notifications.html",{"notifications":userNotifications, "bidNotifications":bidNotifications})
+@login_required
+def myShoppings(request):
+    order = Order.objects.filter(user=request.user)
+    aux=[]
+    for o in order:
+        orderItem = OrderItem.objects.filter(order=o)
+        for i in orderItem:    
+            aux.append(i)
+    return render(request,"users/myShoppings.html",{'order':aux})

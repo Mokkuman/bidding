@@ -1,0 +1,15 @@
+{% extends 'core/layout.html' %}
+
+{% block title %}
+    Checkout
+{% endblock title %}
+
+{% block body %}
+<div class="form">
+    <form method="POST" action="{% url 'cart:checkout' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button id="submitBtn" type="submit" name="Upload">Continuar</button>
+    </form>
+</div>
+{%endblock body%}

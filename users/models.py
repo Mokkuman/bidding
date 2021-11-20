@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=200)
     city = models.CharField(max_length=64, blank = True)
     state = models.CharField(max_length=64,blank = True)
-    money = models.PositiveIntegerField(blank=True,default=0)
+    money = models.FloatField(blank=True,default=0,max_length=50)
     
     #profile image pic
     profilePic = models.ImageField(default="pic_default.jpg",null = True, blank = True)

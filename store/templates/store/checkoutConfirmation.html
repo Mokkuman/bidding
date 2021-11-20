@@ -1,0 +1,35 @@
+{% extends 'core/layout.html' %}
+
+{% block title %}
+    Carrito
+{% endblock title %}
+
+{% block body %}
+{%for item in cart%}
+{%with product=item.product%}
+<h1>Producto</h1>
+<div>{{product.productName}}</div>
+<div>Cantidad: {{item.qty}}</div>
+<div>Precio por unidad: {{product.price}}</div>
+
+{%endwith%}
+{%endfor%}
+<br>
+<div>Total: {{cart.get_total_price}}</div>
+
+<br>
+<h1>Informacion de tu orden</h1>
+<div>{{order.fullName}}</div>
+<div>{{order.address}}</div>
+<div>{{order.city}}</div>
+<div>{{order.phone}}</div>
+
+<div class="form">
+    <form method="POST" action="{% url 'cart:checkoutConfirmation' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button id="submitBtn" type="submit" name="buy">Realizar compra</button>
+        <button id="submitBtn" type="submit" name="cancel">Cancelar</button>
+    </form>
+</div>
+{%endblock body%}

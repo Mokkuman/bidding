@@ -24,7 +24,8 @@ class Cart():
     #Regresa el numero total de productos añadidos al carrito
     def __len__(self):
         return sum(item['qty'] for item in self.cart.values())
-    
+
+ 
     #Funcion iterable para recolectar los valores de la base de datos
     def __iter__(self):
         product_ids = self.cart.keys()
@@ -38,7 +39,19 @@ class Cart():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price']*item['qty']
             yield item
-            
+    
+    def getProducts(self):
+        products_ids = self.cart.keys()
+        products = StockProduct.products.filter(id__in=products_ids)
+        products(type(products))
+        return products
+    
+    def get_price(self,product_id):
+        return (int(self.cart[product_id]['qty']))*(float(self.cart[product_id]['price']))
+    
+    def get_qty(self,product_id):
+        return int(self.cart[product_id]['qty'])
+    
     def get_total_price(self):
         return sum(((float(item['price']))*(int(item['qty'])) for item in self.cart.values()))
     
@@ -46,6 +59,10 @@ class Cart():
         product_id = str(product)
         if product_id in self.cart:
             del self.cart[product_id]
+        self.save()
+        
+    def deleteAll(self):
+        self.cart.clear()
         self.save()
             
     #Guarda los cambios realizados

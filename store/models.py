@@ -34,8 +34,8 @@ class Product(models.Model):
 
 
 class BidProduct(Product):
-    currentBid = models.PositiveIntegerField(blank=True,default=0)
-    minBid = models.PositiveIntegerField(default=0)
+    currentBid = models.FloatField(blank=True,default=0)
+    minBid = models.FloatField(default=0)
     condition = models.CharField(max_length=50)
     bidWinner = models.OneToOneField(User, related_name="BidWinner", null=True, on_delete=models.SET_NULL, blank=True)
 
