@@ -33,10 +33,17 @@ class Product(models.Model):
         return self.image
 
 
+CONDITION_CHOICES = (
+    ('bad','BAD'),
+    ('good', 'GOOD'),
+    ('like new','LIKE NEW'),
+    ('new','NEW'),
+)
+
 class BidProduct(Product):
     currentBid = models.FloatField(blank=True,default=0)
     minBid = models.FloatField(default=0)
-    condition = models.CharField(max_length=50)
+    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default='good')
     bidWinner = models.OneToOneField(User, related_name="BidWinner", null=True, on_delete=models.SET_NULL, blank=True)
 
     #createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="bidCreator",null=True)
