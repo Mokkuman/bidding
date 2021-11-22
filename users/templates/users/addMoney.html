@@ -1,6 +1,6 @@
 {% extends 'core/layout.html' %} 
 {% load static %}   
-
+{% load crispy_forms_tags %} <!--1-->
 {% block cssPath %} 
     <link rel="stylesheet" href="{% static 'users/addMoney.css' %}"  type="text/css"/>
 {% endblock cssPath %}
@@ -8,19 +8,21 @@
 {% block title %}Configuracion{% endblock title%}
     
 {% block body %}
+<div class="infoContainer">
     <p><h1 align="center">Añade créditos a tu cuenta</h1></p>
     <p style="color:#ffbf00" align="center">Tu dinero actual: {{user.money}}</p>
                 <div class="img-logo">
                     <span class="logo-circle">
-                        <img id="logo2" src="{% static 'store/logo.png' %}" alt="PULGAPP">                        
+                        <center><img id="logo2" src="{% static 'store/logo.png' %}" alt="PULGAPP">                        
                     </span>
                 </div>
     <div align="center" class="form">
         <form method="POST" action="{% url 'users:addMoney' %}" >
             {% csrf_token %}
             {{form.as_p}}
-            <button id="submitBtn" type="submit" name="UpdateMoney">Añadir dinero</button>
-            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+            <button id="buttonLogin" type="submit" name="UpdateMoney">Agregar créditos</button>
+            <button id="buttonLogin" type="submit" name="Cancel">Cancelar</button>
         </form>
     </div>
+</div>
 {% endblock body %}

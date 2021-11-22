@@ -10,12 +10,21 @@
     {% block title %} {{product.productName}} {% endblock title%}
 
     {% block body %} 
-    <div class="container">
-        
+    <!--<div class="container">-->
+    <div class="infoContainer">
+    <div class="row">
+    <div class="col-md-3 register-left my-auto">
         <div class="pictures">
             <img src="{{product.image.url}}"  alt="Product Image" width="500" height="500" />
         </div>
+    </div>
         
+    <div class="col-md-9 register-right">
+    <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div id="littlePadding" class="col">
+        <font style="color:black" align="center">
+
         <div class="productDescription">
             
             <div class="productName">
@@ -27,7 +36,7 @@
             </div>
 
             <div class="description">
-                <h3>Descripción</h3>
+                <h3>Descripción:</h3>
                 <p>{{ product.description }}</p>
             </div>
 
@@ -44,11 +53,17 @@
                 <form method="POST" >
                     {% csrf_token %}
                     {{form.as_p}}
-                    <button id="submitBtn" type="submit" name="BidProduct">PUJAR!</button>
+                    <button id="buttonLogin" type="submit" name="BidProduct">PUJAR!</button>
+                     <!--"submitBtn"-->
                 </form>
             </div>
-
-        </div>   
+        </font>
+        </div> 
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>  
     </div>
     {% endblock body %}
 {% else %}

@@ -1,6 +1,6 @@
 .pictures, .productDescription {
     /*border: 3px solid lightblue;*/
-    margin: 0.5em;
+    margin: 0.5em; 
 }
 
 .productName, .price, .description, .category, .condition {
@@ -30,4 +30,80 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+#btnSubmit {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#btnSubmit:hover {
+    color: bisque;
+}
+
+#loginQuestion {
+    font-size: 17px;
+    color: black;
+}
+
+#buttonLogin {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #dee9ff;
+}
+
+#buttonLogin {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+}
+
+#buttonLogin:hover {
+    color: bisque;
+}
+
+#buttonLogin a {
+    text-decoration: none;
+    color:#916161
+}
+
+#buttonLogin a:hover {
+    color: bisque;
+}
+
+/*SignUp CSS*/
+
+.register-right {
+    color: black;
+    padding: 3%;
+    padding-right: 180px;
+    padding-left: 180px;
+    border-top-left-radius: 70% 80%;/*Eran 10 y 50*/
+    border-bottom-left-radius: 70% 80%;
+}
+
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+#littlePadding {
+    padding-left: 80px;
 }

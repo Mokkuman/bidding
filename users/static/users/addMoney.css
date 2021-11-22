@@ -6,6 +6,62 @@
     justify-content: center;
 }
 
-#logo2{
-    height: 40px;
+#logo2 {
+    vertical-align: middle;
+    padding-top: 1.5px;
+    padding-right: 20px;
+    height: 150px;
 }
+
+#btnSubmit {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#btnSubmit:hover {
+    color: bisque;
+}
+
+#loginQuestion {
+    font-size: 17px;
+    color: black;
+}
+
+#buttonLogin {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #dee9ff;
+}
+
+#buttonLogin {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+}
+
+#buttonLogin:hover {
+    color: bisque;
+}
+
+#buttonLogin a {
+    text-decoration: none;
+    color:#916161
+}
+
+#buttonLogin a:hover {
+    color: bisque;
+}
+

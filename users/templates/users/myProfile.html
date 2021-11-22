@@ -3,9 +3,10 @@
 {% load static %}   
 {% load crispy_forms_tags %} <!--1-->
 
+{% block cssPath %}
 
-{% block cssPath %} 
-<link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
+<link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/> 
+
 {% endblock cssPath %}
 
 {% block title %}
@@ -29,7 +30,7 @@ My Profile
                 </p>
                 <p>
                 <a class="modificar" href="{% url 'users:addMoney' %}">
-                <button id="buttonLogin">Modificar créditos</button>
+                <button id="buttonLogin">Agregar moneda</button>
                 </a>
                 </p>
                 <a class="modificar" href="{% url 'users:deleteUser'%}">

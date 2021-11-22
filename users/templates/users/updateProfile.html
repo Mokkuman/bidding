@@ -2,19 +2,26 @@
 {% load static %}   
 
 {% block cssPath %} 
-
+<link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
 {% endblock cssPath %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 {% block title %}Configuracion{% endblock title%}
     
 {% block body %}
-    <h1>Modifica tus datos</h1>
+ <div class="container">
+   <div class="registration-form">
+    <h1><center>Modifica tus datos</h1>
     <div class="form">
         <form method="POST" action="{% url 'users:updateProfile' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <button id="submitBtn" type="submit" name="UpdateProfile">Realizar cambios</button>
-            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+            <button id="buttonLogin" type="submit" class="btn btn-block" name="UpdateProfile">Realizar cambios</button>
+            <button id="buttonLogin" type="submit" class="btn btn-block" name="Cancel">Cancelar</button>
         </form>
     </div>
+   </div>
+ </div>
 {% endblock body %}

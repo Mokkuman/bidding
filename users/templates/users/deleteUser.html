@@ -2,20 +2,24 @@
 {% load static %}   
 
 {% block cssPath %} 
-    <link rel="stylesheet" href="{% static 'users/addMoney.css' %}"  type="text/css"/>
+    <link rel="stylesheet" href="{% static 'store/productUpload.css' %}"  type="text/css"/>
 {% endblock cssPath %}
 
 {% block title %}Configuracion{% endblock title%}
     
 {% block body %}
-    <h1>Eliminar cuenta</h1>
-    <p>¿Estás seguro de hacerlo? :(</p>
+<div class="container upload-form">
+            <div class="product-title">
+                <h1>Eliminar cuenta</h1>
+            </div>
+    <p><center>¿Estás seguro de hacerlo? :(</p>
     <div class="form">
         <form method="POST" action="{% url 'users:deleteUser' %}" >
             {% csrf_token %}
             {{form.as_p}}
-            <button id="submitBtn" type="submit" name="delete">Adios!</button>
-            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+            <button id="bidButton" type="submit" name="delete">Adios!</button>
+            <button id="bidButton" type="submit" name="Cancel">Cancelar</button>
         </form>
     </div>
+</div>
 {% endblock body %}

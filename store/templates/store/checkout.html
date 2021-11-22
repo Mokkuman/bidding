@@ -1,15 +1,28 @@
 {% extends 'core/layout.html' %}
+{% load static %}   
+
+{% block cssPath %} 
+<link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
+{% endblock cssPath %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 {% block title %}
     Checkout
 {% endblock title %}
 
 {% block body %}
-<div class="form">
+<div class="container">
+   <div class="registration-form">  
+    <div class="form">
+    <center>
     <form method="POST" action="{% url 'cart:checkout' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-        <button id="submitBtn" type="submit" name="Upload">Continuar</button>
+        <button id="buttonLogin" type="submit" name="Upload">Continuar</button>
     </form>
+    </div>
+   </div>
 </div>
 {%endblock body%}

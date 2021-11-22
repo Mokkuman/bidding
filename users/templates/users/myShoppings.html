@@ -5,9 +5,9 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>Hola, {{user.firstName}}!<h1>
     <div class="album py-5 bg-light">
-        <div class="container">
+    <div class="container">
+    <div class="pb-3 h5">Hola, {{user.firstName}}!</div>
             <div class="pb-3 h5"></div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
                 {%for o in order %}
