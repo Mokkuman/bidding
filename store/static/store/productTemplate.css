@@ -1,6 +1,6 @@
 .pictures, .productDescription {
     /*border: 3px solid lightblue;*/
-    margin: 0.5em; 
+    margin: 0.1em; 
 }
 
 .productName, .price, .description, .category, .condition {
@@ -14,22 +14,6 @@
 .bidBtn {
     background-color: #149414;
     padding: 1em;
-}
-
-@media (max-width: 860px) {
-    .container{
-        text-align: center;
-    }
-}
-@media (min-width: 860px) {
-    .container {
-        max-width: 1100px;
-        margin: auto;
-        
-        padding: 0 2em;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 #btnSubmit {
@@ -95,14 +79,18 @@
     border-bottom-left-radius: 70% 80%;
 }
 
-@-webkit-keyframes mover {
+.register-left {
+    padding: 10px 20px 10px 50px;
+}
+
+/*@-webkit-keyframes mover {
     0% { transform: translateY(0); }
     100% { transform: translateY(-20px); }
 }
 @keyframes mover {
     0% { transform: translateY(0); }
     100% { transform: translateY(-20px); }
-}
+}*/
 
 #littlePadding {
     padding-left: 80px;
