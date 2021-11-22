@@ -107,3 +107,18 @@
 #littlePadding {
     padding-left: 80px;
 }
+
+#add-button {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+}
+
+#add-button:hover {
+    color: bisque;
+}

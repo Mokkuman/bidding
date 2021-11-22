@@ -51,7 +51,7 @@
             <div class="buy">
                 <form method="POST" >
                     {% csrf_token %}
-                    <button id="buttonLogin" value={{product.id}} type="submit" name="BidProduct">Agregar al carrito!</button>
+                    <button id="add-button" value={{product.id}} type="submit" name="BidProduct">Agregar al carrito!</button>
                 </form>
             </div>
         </font>
