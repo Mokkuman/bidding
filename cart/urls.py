@@ -8,6 +8,6 @@ urlpatterns=[
     path('add/',views.cartAdd,name='cartAdd'),
     path('delete/',views.cartDelete,name='cartDelete'),
     path('deleteBid/<bid_id>', views.deleteBid, name="deleteBid"),
-    path('cart/checkout',views.checkout, name="checkout"),
-    path('cart/checkoutConfirmation',views.checkoutConfirmation, name="checkoutConfirmation"),
+    path('checkout',views.checkout, name="checkout"),
+    path('checkout/checkoutConfirmation',views.checkoutConfirmation, name="checkoutConfirmation"),
 ]

@@ -179,6 +179,7 @@ class UpdateBidGeneral(DetailView):
                 if b.userBid == product.currentBid:
                     product.bidWinner = b.user
                     product.isActive = False
+                    product.sold = True
                     product.save()
                     print("Producto actualizado, ganador seleccionado")
                     print("Ahora el producto no es visible")
@@ -208,6 +209,7 @@ def notifications(request):
     userNotifications = UserNotification.objects.filter(toUser = request.user)
     bidNotifications = BidNotification.objects.filter(toUser = request.user)
     return render(request,"users/notifications.html",{"notifications":userNotifications, "bidNotifications":bidNotifications})
+
 @login_required
 def myShoppings(request):
     order = Order.objects.filter(user=request.user)
@@ -216,4 +218,10 @@ def myShoppings(request):
         orderItem = OrderItem.objects.filter(order=o)
         for i in orderItem:    
             aux.append(i)
-    return render(request,"users/myShoppings.html",{'order':aux})
+    bid=[]
+    bids = Bid.objects.filter(user=request.user)
+    for b in bids:
+        product = b.product
+        if product.bidWinner == request.user:
+            bid.append(product)
+    return render(request,"users/myShoppings.html",{'order':aux,'bidProducts':bid})

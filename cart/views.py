@@ -19,8 +19,12 @@ def cartSummary(request):
     if not request.user.is_authenticated:
         return render(request,'store/cart.html',{'cart':cart})
     bids = Bid.objects.filter(user=request.user)
+    bid=[]
+    for b in bids:
+        if not b.product.sold:
+            bid.append(b)
     return render(request,'store/cart.html',{'cart':cart,
-                                             'biddedProducts':bids})
+                                             'biddedProducts':bid})
     
 
 #Agrega al carrito el producto de stock
@@ -78,16 +82,19 @@ def checkout(request):
                     return redirect("cart:cartSummary")
             if request.method == "POST":
                 form = OrderForm(request.POST)
-                if form.is_valid():
-                    order = form.save(commit=False)
-                    #orders = Order.objects.all() Para ver si hay una order key similar (En discusión)
-                    order.orderKey = ''.join(random.choice(string.ascii_letters + string.digits )for i in range (15) )
-                    order.totalPaid = cart.get_total_price()
-                    order.user = request.user
-                    order.save()
-                    print(order)
-                    request.method="GET"
-                    return checkoutConfirmation(request)
+                if form.is_valid():#Verificar la longitud del número de teléfono ingresado ( 0< número/1,000,000,000 <10)
+                    phone = float(form.cleaned_data['phone'])
+                    if (phone/(1000000000)>=1) and (phone/(1000000000)<10):
+                        order = form.save(commit=False)
+                        order.orderKey = ''.join(random.choice(string.ascii_letters + string.digits )for i in range (15) )
+                        order.totalPaid = cart.get_total_price()
+                        order.user = request.user
+                        order.save()
+                        print(order)
+                        request.method="GET"
+                        return checkoutConfirmation(request)
+                    else:
+                        pass#Mandar alerta que el usuario ingresó un número incorrecto
             form = OrderForm()
             return render(request,"store/checkout.html",{'form':form})
         else:
@@ -98,27 +105,30 @@ def checkout(request):
 
 def checkoutConfirmation(request):
     cart = Cart(request)
-    order = Order.objects.filter(user=request.user).last()#Puede generar errores
-    if request.method == "POST":
-        if "buy" in request.POST:
-            products_id=list(cart.cart.keys())
-            for id in products_id:
-                products = StockProduct.objects.get(id=id)
-                seller = products.seller
-                orderItem = OrderItem(order=order,product=products)
-                orderItem.price = cart.get_price(str(id))
-                orderItem.quiantity=cart.get_qty(str(id))
-                orderItem.save()
-                products.inventory -=cart.get_qty(str(id))  #Reduce el inventario
-                products.save()
-                request.user.money -=cart.get_price(str(id))
-                request.user.save()
-                seller.money += cart.get_price(str(id))
-                seller.save()
-            cart.deleteAll()
-            return redirect("users:myProfile")    
-        else:
-            cart.deleteAll()
-            order.delete()
-            return redirect('core:index')
-    return render(request,"store/checkoutConfirmation.html",{"cart":cart,"order":order})
+    if request.user.is_authenticated and cart.get_total_price()!=0:
+        order = Order.objects.filter(user=request.user).last()#Puede generar errores
+        if request.method == "POST":
+            if "buy" in request.POST:
+                products_id=list(cart.cart.keys())
+                for id in products_id:
+                    products = StockProduct.objects.get(id=id)
+                    seller = products.seller
+                    orderItem = OrderItem(order=order,product=products)
+                    orderItem.price = cart.get_price(str(id))
+                    orderItem.quiantity=cart.get_qty(str(id))
+                    orderItem.save()
+                    products.inventory -=cart.get_qty(str(id))  #Reduce el inventario
+                    products.sold +=cart.get_qty(str(id))
+                    products.save()
+                    request.user.money -=cart.get_price(str(id))
+                    request.user.save()
+                    seller.money += cart.get_price(str(id))
+                    seller.save()
+                cart.deleteAll()
+                return redirect("users:myProfile")    
+            else:
+                cart.deleteAll()
+                order.delete()
+                return redirect('core:index')
+        return render(request,"store/checkoutConfirmation.html",{"cart":cart,"order":order})
+    return HttpResponseNotAllowed("Not allowed")

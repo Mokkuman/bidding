@@ -5,10 +5,10 @@ from store.models import Product,StockProduct,BidProduct
 # Create your models here.
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='order_user')
-    fullName = models.CharField(max_length=250)
-    address = models.CharField(max_length=250)
-    city = models.CharField(max_length=250)
-    phone = models.CharField(max_length=10)
+    fullName = models.CharField(max_length=50)
+    address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    phone = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     totalPaid = models.FloatField(max_length=50)
     orderKey = models.CharField(max_length=200)

@@ -45,7 +45,7 @@ class BidProduct(Product):
     minBid = models.FloatField(default=0)
     condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default='good')
     bidWinner = models.OneToOneField(User, related_name="BidWinner", null=True, on_delete=models.SET_NULL, blank=True)
-
+    sold = models.BooleanField(default=False)
     #createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="bidCreator",null=True)
 
     def save(self, *args, **kwargs):
@@ -68,6 +68,7 @@ class BidProduct(Product):
 class StockProduct(Product):
     price = models.FloatField(max_length=50)
     inventory = models.PositiveIntegerField(blank=True,default=1)
+    sold = models.PositiveBigIntegerField(default=0)
     #createdBy = models.ForeignKey(User,on_delete=models.CASCADE,related_name="productCreator",null=True)
 
     def getPrice(self):

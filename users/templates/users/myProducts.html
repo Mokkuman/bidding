@@ -7,7 +7,7 @@
 {% block body %}
     <div class="album py-5 bg-light">
     <div class="container">
-    <div class="pb-3 h5">Hola, {{user.firstName}}!</div>
+    <div class="pb-3 h5">Productos que has subido a nuestra página, da click en ellos para editarlos</div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
                 {%for product in stockProducts %}
                 <div class="col">
@@ -18,7 +18,7 @@
                                 <a class="text-dark text-decoration-none" href="http://127.0.0.1:8000/myProducts/{{product.id}}/updateStockProduct">{{product.productName}}</a>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">9min read</small>
+                                <small class="text-muted">{{product.sold}} vendidos</small>
                             </div>
                         </div>
                     </div>
@@ -32,9 +32,15 @@
                             <p class="card-text">
                                 <a class="text-dark text-decoration-none" href="http://127.0.0.1:8000/myProducts/{{product.id}}/updateBidProduct">{{product.productName}}</a>
                             </p>
+                            {%if product.sold%}
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">9min read</small>
+                                <small class="text-muted">Vendido a {{product.currentBid}}!</small>
                             </div>
+                            {%else%}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Puja actual: {{product.currentBid}}</small>
+                            </div>
+                            {%endif%}
                         </div>
                     </div>
                 </div>
