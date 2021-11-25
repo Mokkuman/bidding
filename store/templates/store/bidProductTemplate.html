@@ -9,6 +9,11 @@
 
     {% block title %} {{product.productName}} {% endblock title%}
 
+    <!--ALERT NOTIFICATION-->
+    {% block alertMsg %}
+        {% include 'core/messages.html' %}
+    {% endblock alertMsg %}
+    
     {% block body %} 
     <!--<div class="container">-->
     <div class="infoContainer">
@@ -65,6 +70,7 @@
     </div>
     </div>  
     </div>
+
     {% endblock body %}
 {% else %}
     <h1>Product no encontrado!</h1>

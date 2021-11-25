@@ -6,6 +6,10 @@
 {% endblock cssPath %}
 
 {% block title %}Configuracion{% endblock title%}
+<!--ALERT NOTIFICATION-->
+{% block alertMsg %}
+    {% include 'core/messages.html' %}
+{% endblock alertMsg %}
     
 {% block body %}
     <h1>Modifica tus datos</h1>

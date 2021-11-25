@@ -88,8 +88,16 @@
             </div>
           </nav>
         </header>
+        {% comment %} <!--CONTAINER FOR ALERT NOTIFICATION-->
+        <div class="alert alert-danger" role="alert" id="msg">
+          {% block alertMsg %}{% endblock alertMsg %}
+        </div> {% endcomment %}
 
-        <div class="main">{% block body %} {% endblock body %}</div>
+        <div class="main">
+        <!--CONTAINER FOR ALERT NOTIFICATION-->
+        {% block alertMsg %} {% endblock alertMsg %}
+        {% block body %} {% endblock body %}  
+        </div>
           <footer class="page-footer font-small">
             <div class="container text-center text-md-left">
 
@@ -138,7 +146,7 @@
 
                 <hr class="clearfix w-100 d-md-none">
             </div>
-            </div>
+            <!--</div>-->
             <!-- Copyright -->
             <div id="copyright-id" class="footer-copyright text-center py-3">
               © 2020 Copyright
@@ -146,7 +154,16 @@
               Todos los derechos reservados
             </div>
           </footer>
-        </div>
-      </div>
+        <!--</div>-->
+    </div>
+      <!--SCRIPT ALERT NOTIFICATION-->
+    <script>
+        setTimeout(function(){
+            if($('#msg').length > 0){
+                $('#msg').remove();
+            }
+        }, 2000);
+    </script>
+
   </body>
 </html>

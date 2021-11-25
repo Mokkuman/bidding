@@ -8,6 +8,7 @@ from django.views.generic.detail import DetailView
 from django.http import HttpResponseNotAllowed
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 def loginV(request):
@@ -100,9 +101,6 @@ def updateMoney(request):
     theForm = UpdateMoneyForm()
     return render(request,"users/addMoney.html",{"form":theForm})
 
-def wishlist(request):
-    return render(request,"users/wishlist.html")
-
 @login_required
 def myProducts(request):
     context={
@@ -132,8 +130,12 @@ class UpdateStockGeneral(DetailView):
             print("Dentro de UpdateProduct")
             form = UpdateStock(request.POST,request.FILES,instance=StockProduct.objects.get(id=kwargs['id_product']))
             if form.is_valid():
-                form.save()
-                return redirect('users:myProducts')
+                if(form.cleaned_data['price']<0):
+                    #print("No puedes poner un num negativo")
+                    messages.warning(self.request,"No puedes ingresar valores negativos")
+                else:                
+                    form.save()
+                    return redirect('users:myProducts')
             return render(request,self.template_name,{'form':form})
         elif "Delete" in request.POST:
             #Parte para eliminar el producto

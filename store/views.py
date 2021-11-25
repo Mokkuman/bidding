@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+#from django.http import HttpResponse
 from django.http import HttpResponseNotAllowed
 from .models import BidProduct, Product,StockProduct
 from store.forms import BidForm, BidProductForm,StockProductForm
 from users.models import Bid, User
 from django.views.generic.edit import CreateView
 
+from django.contrib import messages
 # Create your views here.
 
 def cart(request):
@@ -23,25 +24,29 @@ def goToBidProduct(request,id_product):
                 return redirect('users:loginV')
             if theForm.is_valid():
                 userMoney = request.user.money
-                user_bid = theForm.cleaned_data['currentBid']
-                print("userBid: "+str(user_bid))
-                print("userMoney: "+str(userMoney))
-                print("product current bid: "+str(productCurrentBid))
-                if user_bid < userMoney and user_bid > productCurrentBid:
-                    try:
-                        #Puede generarse un error donde no exista el Bid
-                        bid = Bid.objects.get(user=request.user,product=product)
-                        print("Sobreescribiendo puja")
-                        bid.userBid = user_bid
-                        bid.save()
-                    except:
-                        print("Creando puja")
-                        newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
-                    theForm.save()
-                    print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
-                
+                if(theForm.cleaned_data['currentBid'] < 0):
+                    #print("No puedes hacer una puja con dinero negativo ._.")
+                    messages.warning(request,"No puedes hacer una puja con dinero negativo")
                 else:
-                    print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
+                    user_bid = theForm.cleaned_data['currentBid']
+                    print("userBid: "+str(user_bid))
+                    print("userMoney: "+str(userMoney))
+                    print("product current bid: "+str(productCurrentBid))
+                    if user_bid < userMoney and user_bid > productCurrentBid:
+                        try:
+                            #Puede generarse un error donde no exista el Bid
+                            bid = Bid.objects.get(user=request.user,product=product)
+                            print("Sobreescribiendo puja")
+                            bid.userBid = user_bid
+                            bid.save()
+                        except:
+                            print("Creando puja")
+                            newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
+                        theForm.save()
+                        print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
+                
+                    else:
+                        print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
         return render(request, "store/bidProductTemplate.html", {"product" : product, "form":theForm})
     return HttpResponseNotAllowed("Not allowed")
 
@@ -68,8 +73,13 @@ class BidProductCreateView(CreateView):
     def form_valid(self, form):
         bidProduct = form.save(commit=False)
         bidProduct.seller = User.objects.get(id=self.request.user.id) 
-        bidProduct.save()
-        return redirect("core:index")
+        if( form.cleaned_data['minBid'] < 0):
+            #print("No puedes ingresar valores negativos")
+            messages.warning(self.request,"No puedes ingresar valores negativos")
+            return redirect("store:uploadBidProduct")
+        else:
+            bidProduct.save()
+            return redirect("core:index")
 
 class StockProductCreateView(CreateView):
     model = StockProduct
@@ -79,5 +89,10 @@ class StockProductCreateView(CreateView):
     def form_valid(self,form):
         stockProduct = form.save(commit=False)
         stockProduct.seller = User.objects.get(id=self.request.user.id)
-        stockProduct.save()
-        return redirect('core:index')
+        if( form.cleaned_data['price'] < 0):
+            #print("No puedes ingresar valores negativos")
+            messages.warning(self.request,"No puedes ingresar valores negativos")
+            return redirect('store:uploadStockProduct')
+        else:
+            stockProduct.save()
+            return redirect('core:index')
