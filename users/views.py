@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import BidNotification, User,Bid, UserNotification
+from users.models import BidNotification, User,Bid, UserNotification, SystemNotification
 from .forms import UpdateForm, UpdateMoneyForm, UserForm, LoginForm,UpdateBid,UpdateStock
 from store.models import BidProduct,StockProduct
 from cart.models import Order, OrderItem,OrderBid
@@ -208,7 +208,12 @@ class UpdateBidGeneral(DetailView):
 def notifications(request):
     userNotifications = UserNotification.objects.filter(toUser = request.user)
     bidNotifications = BidNotification.objects.filter(toUser = request.user)
-    return render(request,"users/notifications.html",{"notifications":userNotifications, "bidNotifications":bidNotifications})
+    systemNotifications = SystemNotification.objects.filter(toUser = request.user)
+      
+    return render(request,"users/notifications.html",{
+        "notifications":userNotifications,
+        "bidNotifications":bidNotifications,
+        "systemNotifications":systemNotifications})
 
 @login_required
 def myShoppings(request):

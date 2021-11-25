@@ -4,7 +4,7 @@ from .cart import Cart
 from cart.models import Order,OrderItem
 from store.models import BidProduct, StockProduct
 from django.http import JsonResponse
-from users.models import Bid, User
+from users.models import Bid, SystemNotification, User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotAllowed
 from cart.forms import OrderForm,OrderItemForm
@@ -124,6 +124,8 @@ def checkoutConfirmation(request):
                     request.user.save()
                     seller.money += cart.get_price(str(id))
                     seller.save()
+                newMessage = f'Su orden con clave: {order.orderKey} ha sido procesado! Puede checar en Mis Compras localizado en el header!'
+                SystemNotification.objects.create(toUser = request.user, message = newMessage)
                 cart.deleteAll()
                 return redirect("users:myProfile")    
             else:

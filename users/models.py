@@ -110,3 +110,8 @@ class BidNotification(Notification):
 
     def __str__(self):
         return f"BidWinner: {self.toUser.email}, Product: {self.fromBidProduct.productName }"
+    
+class SystemNotification(Notification):
+    image = models.ImageField(default="pic_default.jpg",null = True, blank = True)
+    def __str__(self):
+        return f"From: PulgApp, To: {self.fromBidProduct.productName }"

@@ -40,7 +40,7 @@
             </div>
             </div>
             </div>
-            {% endfor %}
+        {% endfor %}
 
 {% for bidNotification in bidNotifications %}
               <div data-index="{{bidNotification.fromBidProduct}}" class="row mb-4 border product-item">
@@ -72,5 +72,40 @@
                 </div>
               </div>
             {% endfor %}
+
+
+  {% for systemNotification in systemNotifications %}
+              <div data-index="{{ systemNotification.toUser }}" class="row mb-4 border product-item">
+                <div class="col-md-3 col-lg-2 order-md-first bg-light">
+                  <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ systemNotification.image.url }}">
+                </div>
+                <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+                  <a href="http://127.0.0.1:8000/products/stock/{{product.id}}" class="text-decoration-none text-reset">
+                    <h1 class="h5 pt-2">De: PulgApp </h1>
+                  </a>
+                  <div class="border">
+                    <div class="col border-bottom">
+                      <div class="row p-3">
+                        <div class="col-6">Mensaje: </div>
+                            <b>{{ systemNotification.message }}</b>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="row p-3">
+                        <div class="col-12">
+                          <button type="button" id="delete-button" data-index="{{systemNotification.id}}"
+                            class="btn btn-outline-secondary btn-sm delete-button">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            </div>
+        {% endfor %}
 
 {% endblock body %}
