@@ -43,10 +43,12 @@ def goToBidProduct(request,id_product):
                             print("Creando puja")
                             newBid = Bid.objects.create(user = request.user, userBid = user_bid, product=product)
                         theForm.save()
-                        print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
+                        #print("BID SUCCESSFUL!") #use JavaScript alert() or some other UI notification
+                        messages.success(request,"Puja exitosa")
                 
                     else:
-                        print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
+                        #print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
+                        messages.warning(request,"No tienes suficientes fondos o tu puja es muy baja")
         return render(request, "store/bidProductTemplate.html", {"product" : product, "form":theForm})
     return HttpResponseNotAllowed("Not allowed")
 

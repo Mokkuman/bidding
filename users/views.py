@@ -131,7 +131,6 @@ class UpdateStockGeneral(DetailView):
             form = UpdateStock(request.POST,request.FILES,instance=StockProduct.objects.get(id=kwargs['id_product']))
             if form.is_valid():
                 if(form.cleaned_data['price']<0):
-                    #print("No puedes poner un num negativo")
                     messages.warning(self.request,"No puedes ingresar valores negativos")
                 else:                
                     form.save()

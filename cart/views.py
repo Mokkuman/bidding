@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from users.models import Bid, SystemNotification, User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotAllowed
+from django.contrib import messages
 from cart.forms import OrderForm,OrderItemForm
 import string
 import random
@@ -40,8 +41,10 @@ def cartAdd(request):
             #product.save()
             response = JsonResponse({'test':'data'})
             #print("Compra exitosa!") use JavaScript alert() or some other UI notification
+            messages.success(request,"No puedes ingresar valores negativos")
         else:
-            print("No hay stock!")
+            #print("No hay stock!")
+            messages.warning(request,"No hay stock!");
             return render(request, "store/stockProductTemplate.html", {'product' : product})
         return response
     
@@ -98,9 +101,11 @@ def checkout(request):
             form = OrderForm()
             return render(request,"store/checkout.html",{'form':form})
         else:
-            print("Sin dinero suficiente!")
+            #print("Sin dinero suficiente!")
+            messages.warning(request,"No hay dinero suficiente");
             return redirect('users:addMoney')
-    print("No permitido, debes iniciar sesión")
+    #print("No permitido, debes iniciar sesión")
+    messages.warning(request,"No permitido, debes iniciar sesión") #checar
     return HttpResponseNotAllowed("Not allowed")
 
 def checkoutConfirmation(request):
