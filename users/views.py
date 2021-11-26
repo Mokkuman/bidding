@@ -215,6 +215,21 @@ def notifications(request):
         "notifications":userNotifications,
         "bidNotifications":bidNotifications,
         "systemNotifications":systemNotifications})
+    
+def deleteUserNotification(request, notification_id):
+    notification = UserNotification.objects.get(id = notification_id)
+    notification.delete()
+    return redirect('users:notifications')
+    
+def deleteBidNotification(request, notification_id):
+    notification = BidNotification.objects.get(id = notification_id)
+    notification.delete()
+    return redirect('users:notifications')
+    
+def deleteSystemNotification(request, notification_id):
+    notification = SystemNotification.objects.get(id = notification_id)
+    notification.delete()
+    return redirect('users:notifications')
 
 @login_required
 def myShoppings(request):

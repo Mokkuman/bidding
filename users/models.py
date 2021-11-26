@@ -114,4 +114,4 @@ class BidNotification(Notification):
 class SystemNotification(Notification):
     image = models.ImageField(default="pic_default.jpg",null = True, blank = True)
     def __str__(self):
-        return f"From: PulgApp, To: {self.fromBidProduct.productName }"
+        return f"From: PulgApp, To: {self.toUser.email }"
