@@ -18,6 +18,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(StockProduct,related_name='order_items',on_delete=models.CASCADE)
     price = models.FloatField(max_length=50,default=1.0)
     quiantity = models.PositiveIntegerField(default=1)
+    shipped = models.BooleanField(default = False)
     
 class OrderBid(models.Model):
     order = models.ForeignKey(Order,related_name='bid',on_delete=models.CASCADE)

@@ -128,11 +128,13 @@ def checkoutConfirmation(request):
                     request.user.money -=cart.get_price(str(id))
                     request.user.save()
                     seller.money += cart.get_price(str(id))
+                    newMessage = f'Has realizado una venta! Ve más detalles en el apartado de "Mis productos"'
+                    SystemNotification.objects.create(toUser = seller, message = newMessage)
                     seller.save()
                 newMessage = f'Su orden con clave: {order.orderKey} ha sido procesado! Puede checar en Mis Compras localizado en el header!'
                 SystemNotification.objects.create(toUser = request.user, message = newMessage)
                 cart.deleteAll()
-                return redirect("users:myProfile")    
+                return redirect("users:myProducts")    
             else:
                 cart.deleteAll()
                 order.delete()

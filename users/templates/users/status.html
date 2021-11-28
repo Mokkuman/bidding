@@ -1,0 +1,72 @@
+{% extends 'core/layout.html' %} 
+{% load static %}   
+
+{% block cssPath %} 
+<link rel="stylesheet" href="{% static 'store/productTemplate.css' %}"  type="text/css"/>
+{% endblock cssPath %}
+
+    {% block title %} Información de orden {% endblock title%}
+
+    {% block body %} 
+    {%with product=orderItem.product%}
+    <div class="infoContainer">
+    <div class="row">
+        <div class="col-md-3 register-left my-auto">   
+            <div class="pictures">
+                <img src="{{product.image.url}}"  alt="Product Image" width="500" height="500" />
+            </div>
+        </div>
+        
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div id="littlePadding" class="col">
+                            <font style="color:black" align="center">
+                        
+                            <div class="productDescription">
+                                
+                                <div class="productName">
+                                    <h1>{{ product.productName }}</h1>
+                                </div>
+
+                                <div class="description">
+                                    <h3>Descripción:</h3>
+                                    <p>{{ product.description }}</p>
+                                </div>
+
+                                <div class="price">
+                                    <h3>Precio: {{ orderItem.price }} <h3>
+                                </div>
+
+                                <div class="qty">
+                                    <h3>Cantidad: {{ orderItem.quiantity }} <h3>
+                                </div>
+
+                                <div class="date">
+                                    <h3>Comprado el: {{ orderItem.order.created }} <h3>
+                                </div>
+
+                                {%if orderItem.shipped%}
+                                <div class="status">
+                                    <h3>Estatus: Enviado!</h3>
+                                {%else%}
+                                <div class="status">
+                                    <h3>Estatus: Aún no se envía</h3>
+                                </div>
+                                {%endif%}
+                                <div class="options">
+                                    <form method="POST" >
+                                        {% csrf_token %}
+                                        <button type ="submit" name="return">Regresar</button>
+                                    </form>
+                                </div>
+                            </font>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {%endwith%}
+    {% endblock body %}
+ 

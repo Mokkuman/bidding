@@ -10,7 +10,7 @@ def FAQ(request):
 
 def index(request):
 	context = {
-        'stockProducts':StockProduct.objects.filter(isActive = True),
-        'bidProducts':BidProduct.objects.filter(isActive=True,bidWinner=None)
+        'stockProducts':reversed(StockProduct.objects.filter(isActive = True)),
+        'bidProducts':reversed(BidProduct.objects.filter(isActive=True,bidWinner=None))
     }
 	return render(request,'core/index.html',context)

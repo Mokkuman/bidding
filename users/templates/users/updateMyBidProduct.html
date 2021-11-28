@@ -9,6 +9,12 @@
     
 {% block body %}
     <h1>Modifica tus datos</h1>
+    {%if bid.sold%}
+    <div>
+        <h3>¡El producto ya fue vendido! Ponte en contacto con el ganador</h3>
+    </div>
+    <button id="submitBtn" type="submit" name="Delete">Eliminar</button>
+    {%else%}
     <div class="form">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -19,4 +25,5 @@
             <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
         </form>
     </div>
+    {%endif%}
 {% endblock body %}

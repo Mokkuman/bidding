@@ -104,8 +104,8 @@ def updateMoney(request):
 @login_required
 def myProducts(request):
     context={
-        'bidProducts':BidProduct.objects.filter(seller=request.user),
-        'stockProducts':StockProduct.objects.filter(seller=request.user)
+        'bidProducts':reversed(BidProduct.objects.filter(seller=request.user)),
+        'stockProducts':reversed(StockProduct.objects.filter(seller=request.user))
     }
     return render(request,"users/myProducts.html",context)
 
@@ -142,9 +142,27 @@ class UpdateStockGeneral(DetailView):
             product = StockProduct.objects.get(id=kwargs['id_product'])
             product.delete()
             return redirect('users:myProducts')
+        elif "Orders":
+            return orders(request,kwargs['id_product'])
         else:
             print("Dentro de cancelar")
             return redirect('users:myProducts')
+        
+def orders(request,id_product):
+    orderItem = reversed(OrderItem.objects.filter(product = id_product))
+    return render(request,"users/orders.html",{"orderItem":orderItem})
+
+def order(request,id_order):
+    orderItem = OrderItem.objects.get(id = id_order)
+    if request.user.id != orderItem.product.seller.id:
+        return HttpResponseNotAllowed("Not allowed")
+    else:
+        if request.method=="POST":
+            orderItem.shipped = True
+            orderItem.save()
+            print(orderItem.shipped)
+            return redirect('users:myProducts')
+        return render(request,"users/order.html",{"orderItem":orderItem})
         
 class UpdateBidGeneral(DetailView):
     form_class = UpdateBid
@@ -157,7 +175,7 @@ class UpdateBidGeneral(DetailView):
                 'category':product.category,'isActive':product.isActive}
             self.form_class.initial = data
             form = self.form_class(initial=data)
-            return render(request,"users/updateMyBidProduct.html",{"form":form})
+            return render(request,"users/updateMyBidProduct.html",{"form":form,"bid":product})
         except:
             print("No puedes acceder a esta página porque no eres el propietario del producto")
             return HttpResponseNotAllowed("Not allowed")
@@ -207,9 +225,9 @@ class UpdateBidGeneral(DetailView):
         
 @login_required
 def notifications(request):
-    userNotifications = UserNotification.objects.filter(toUser = request.user)
-    bidNotifications = BidNotification.objects.filter(toUser = request.user)
-    systemNotifications = SystemNotification.objects.filter(toUser = request.user)
+    userNotifications = reversed(UserNotification.objects.filter(toUser = request.user))
+    bidNotifications = reversed(BidNotification.objects.filter(toUser = request.user))
+    systemNotifications = reversed(SystemNotification.objects.filter(toUser = request.user))
       
     return render(request,"users/notifications.html",{
         "notifications":userNotifications,
@@ -239,10 +257,22 @@ def myShoppings(request):
         orderItem = OrderItem.objects.filter(order=o)
         for i in orderItem:    
             aux.append(i)
+    aux.reverse()
     bid=[]
     bids = Bid.objects.filter(user=request.user)
     for b in bids:
         product = b.product
         if product.bidWinner == request.user:
             bid.append(product)
+    bid.reverse()
     return render(request,"users/myShoppings.html",{'order':aux,'bidProducts':bid})
+
+def status(request,id_order):
+    orderItem = OrderItem.objects.get(id = id_order)
+    if request.user.id == orderItem.order.user.id:
+        if request.method == "POST":
+            return redirect('users:myShoppings')
+        else:
+            return render(request,"users/status.html",{"orderItem":orderItem})
+    else:
+        return HttpResponseNotAllowed("Not allowed")

@@ -17,5 +17,8 @@ urlpatterns = [
     path("deleteUser",views.deleteUser,name="deleteUser"),
     path("myProducts/<int:id_product>/updateStockProduct",views.UpdateStockGeneral.as_view(),name="updateStock"),
     path("myProducts/<int:id_product>/updateBidProduct",views.UpdateBidGeneral.as_view(),name="updateBid"),
+    path("myProducts/orders",views.orders,name="orders"),
+    path("myProducts/<int:id_order>/order",views.order,name="order"),
     path("myShoppings",views.myShoppings,name="myShoppings"),
+    path("myShoppings/<int:id_order>/status",views.status,name="status"),
 ]
