@@ -185,7 +185,7 @@ class UpdateBidGeneral(DetailView):
                     print("Producto actualizado, ganador seleccionado")
                     print("Ahora el producto no es visible")
                     #Enviar notificacion al ganador
-                    newMessage = f'¡Felicidades {b.user.firstName}! ¡Has ganado el bid para el producto: {product.productName}! Procede a pagar por favor.'
+                    newMessage = f'¡Felicidades {b.user.firstName}! ¡Has ganado el bid para el producto: {product.productName}! ¡Vendido a ${product.currentBid}! Comuníquese con {product.seller.email}, por favor.'
                     #BidNotification.objects.create(toUser = bidder, message = newMessage, fromBidProduct = product)    
                 else:
                     #Enviar notificaciones a los perdedores
