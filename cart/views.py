@@ -102,10 +102,10 @@ def checkout(request):
             return render(request,"store/checkout.html",{'form':form})
         else:
             #print("Sin dinero suficiente!")
-            messages.warning(request,"No hay dinero suficiente");
+         # messages.warning(request,"No hay dinero suficiente");
             return redirect('users:addMoney')
     #print("No permitido, debes iniciar sesión")
-    messages.warning(request,"No permitido, debes iniciar sesión") #checar
+    #messages.warning(request,"No permitido, debes iniciar sesión") #checar
     return HttpResponseNotAllowed("Not allowed")
 
 def checkoutConfirmation(request):

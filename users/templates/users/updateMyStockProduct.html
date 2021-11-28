@@ -2,25 +2,30 @@
 {% load static %}   
 
 {% block cssPath %} 
-
+<link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
 {% endblock cssPath %}
 
-{% block title %}Configuracion{% endblock title%}
+{% block title %}Configuración{% endblock title%}
 <!--ALERT NOTIFICATION-->
 {% block alertMsg %}
     {% include 'core/messages.html' %}
 {% endblock alertMsg %}
     
 {% block body %}
-    <h1>Modifica tus datos</h1>
-    <div class="form">
+<div class="container">
+    <h1><center>Modifica tus datos</h1>
+    <!--<div class="form">-->
+    <div class="registration-form">     
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <button id="submitBtn" type="submit" name="UpdateProduct">Realizar cambios</button>
-            <button id="submitBtn" type="submit" name="Delete">Eliminar</button>
-            <button id="submitBtn" type="submit" name="Orders">Ordenes</button>
-            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+            <div class="form-group">
+            <button id="btnSubmit" type="submit" name="UpdateProduct">Realizar cambios</button>
+            <button id="btnSubmit" type="submit" name="Delete">Eliminar</button>
+            <button id="btnSubmit" type="submit" name="Orders">Ordenes</button>
+            <button id="btnSubmit" type="submit" name="Cancel">Cancelar</button>
+            </div>
         </form>
     </div>
+</div>
 {% endblock body %}

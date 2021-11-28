@@ -142,7 +142,7 @@ class UpdateStockGeneral(DetailView):
             product = StockProduct.objects.get(id=kwargs['id_product'])
             product.delete()
             return redirect('users:myProducts')
-        elif "Orders":
+        elif "Orders" in request.POST:
             return orders(request,kwargs['id_product'])
         else:
             print("Dentro de cancelar")

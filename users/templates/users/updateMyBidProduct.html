@@ -2,28 +2,33 @@
 {% load static %}   
 
 {% block cssPath %} 
-
+<link rel="stylesheet" href="{% static 'users/formStyle.css' %}"  type="text/css"/>
 {% endblock cssPath %}
 
 {% block title %}Configuracion{% endblock title%}
     
 {% block body %}
-    <h1>Modifica tus datos</h1>
+<div class="container">
+    <h1><center>Modifica tus datos</h1>
+    <div class="registration-form">     
     {%if bid.sold%}
     <div>
         <h3>¡El producto ya fue vendido! Ponte en contacto con el ganador</h3>
     </div>
     <button id="submitBtn" type="submit" name="Delete">Eliminar</button>
     {%else%}
-    <div class="form">
+    <!--<div class="form">-->
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <button id="submitBtn" type="submit" name="UpdateProduct">Realizar cambios</button>
-            <button id="submitBtn" type="submit" name="End">Terminar apuesta</button>
-            <button id="submitBtn" type="submit" name="Delete">Eliminar</button>
-            <button id="submitBtn" type="submit" name="Cancel">Cancelar</button>
+            <div class="form-group">
+            <button id="btnSubmit" type="submit" name="UpdateProduct">Realizar cambios</button>
+            <button id="btnSubmit" type="submit" name="End">Terminar apuesta</button>
+            <button id="btnSubmit" type="submit" name="Delete">Eliminar</button>
+            <button id="btnSubmit" type="submit" name="Cancel">Cancelar</button>
+            </div>
         </form>
     </div>
+</div>
     {%endif%}
 {% endblock body %}
