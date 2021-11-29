@@ -50,9 +50,11 @@
             </div>
 
             <div class="condition">
-                <h3>Condición: {{ product.condition }}</h3>
+                <h3>Condición:</h3>
+                <h3 id="yeetCondition"> {{product.condition}}</h3>
+                <!--<h3 for="id_condition"> a {{ product.condition }}</h3>-->
             </div>
-            <p>Tu puja debe ser mayor a la puja más alta!</p> 
+            <p for="id_prueba">Tu puja debe ser mayor a la puja más alta!</p> 
             
             <div class="form">
                 <form method="POST" >
@@ -70,7 +72,7 @@
     </div>
     </div>  
     </div>
-
+    <script src="{% static 'store/bidLabel.js'%}"></script>
     {% endblock body %}
 {% else %}
     <h1>Product no encontrado!</h1>

@@ -67,8 +67,8 @@
                       <span>Hola, {{user.firstName}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a href="{% url 'users:myProfile' %}" class="dropdown-item">My Profile</a></li>
-                      <li><a href="{% url 'users:logout' %}" class="dropdown-item">Log Out</a></li>
+                      <li><a href="{% url 'users:myProfile' %}" class="dropdown-item">Mi perfil</a></li>
+                      <li><a href="{% url 'users:logout' %}" class="dropdown-item">Cerrar sesion</a></li>
                       <li>
                         <hr class="dropdown-divider">
                       </li>
@@ -79,8 +79,8 @@
                       <span>Hola, invitado</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a href="{% url 'users:loginV' %}" class="dropdown-item">Log In</a></li>
-                      <li><a href="{% url 'users:signup' %}" class="dropdown-item">Sign Up</a></li>
+                      <li><a href="{% url 'users:loginV' %}" class="dropdown-item">Iniciar sesion</a></li>
+                      <li><a href="{% url 'users:signup' %}" class="dropdown-item">Registrarse</a></li>
                     </ul>                  
                   {% endif %}
                 </div>

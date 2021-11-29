@@ -1,0 +1,33 @@
+#submitBtn {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #aaadb3;
+    border: none;
+    color:#916161;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#submitBtn:hover {
+    color: bisque;
+}
+
+.form {
+    text-align: center;
+}
+
+.summary {
+
+}
+
+.cart {
+    
+}
+
+#imagen-checkout {
+    width: 150px;
+    height: auto;
+}

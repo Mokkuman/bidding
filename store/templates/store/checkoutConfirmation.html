@@ -1,35 +1,74 @@
 {% extends 'core/layout.html' %}
 
+{% load static %}
+
 {% block title %}
     Carrito
 {% endblock title %}
 
+{% block cssPath %} 
+    <link rel="stylesheet" href="{% static 'store/checkout.css' %}"  type="text/css"/>
+{% endblock cssPath %}
+
 {% block body %}
-{%for item in cart%}
-{%with product=item.product%}
-<h1>Producto</h1>
-<div>{{product.productName}}</div>
-<div>Cantidad: {{item.qty}}</div>
-<div>Precio por unidad: {{product.price}}</div>
 
-{%endwith%}
-{%endfor%}
-<br>
-<div>Total: {{cart.get_total_price}}</div>
+<div class="container">
+    <div class="row m-0">
+        <div class="col-lg-7 pb-5 pe-lg-5 cart">
+            <div class="row">
+                <div class="title">
+                    <h1>Producto</h1>
+                </div>
+    
+                <div class="row m-0 bg-light">
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <br>
+                            {%for item in cart%}
+                            {%with product=item.product%}
+                            
+                            <div class="col">
+                                <div><img id="imagen-checkout" src="{{product.image.url}}" alt="imagenProducto"></div>
+                            </div>
+        
+                            <div class="col">
+                                <div class="row">{{product.productName}}</div>
+                                <div class="row">Cantidad: {{item.qty}}</div>
+                                <div class="row">Precio por unidad: {{product.price}}</div>
+                            </div>
+        
+                            {%endwith%}
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
 
-<br>
-<h1>Informacion de tu orden</h1>
-<div>{{order.fullName}}</div>
-<div>{{order.address}}</div>
-<div>{{order.city}}</div>
-<div>{{order.phone}}</div>
+            </div>
+            
+        </div>
+        
+        <div class="col summary">
+            <h1>Informacion de tu orden</h1>
+            <div>{{order.fullName}}</div>
+            <div>{{order.address}}</div>
+            <div>{{order.city}}</div>
+            <div>{{order.phone}}</div>
+        </div>
+        
 
-<div class="form">
-    <form method="POST" action="{% url 'cart:checkoutConfirmation' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button id="submitBtn" type="submit" name="buy">Realizar compra</button>
-        <button id="submitBtn" type="submit" name="cancel">Cancelar</button>
-    </form>
+
+        <div>Total: {{cart.get_total_price}}</div>
+        
+        <div class="form">
+            <form method="POST" action="{% url 'cart:checkoutConfirmation' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button id="submitBtn" type="submit" name="buy">Realizar compra</button>
+                <button id="submitBtn" type="submit" name="cancel">Cancelar</button>
+            </form>
+        </div>
+    </div>
 </div>
+
+
 {%endblock body%}
