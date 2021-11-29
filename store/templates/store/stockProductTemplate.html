@@ -51,7 +51,12 @@
                                 <div class="buy">
                                     <form method="POST" >
                                         {% csrf_token %}
-                                        <button id="add-button" value={{product.id}} type="submit" name="BidProduct">Agregar al carrito!</button>
+                                        <button onclick='foo();' id="add-button" value={{product.id}} type="submit" name="BidProduct">Agregar al carrito!</button>
+                                        <script>
+                                            function foo() {
+                                              Swal.fire('Producto agregado al carrito', '', 'success');
+                                            }
+                                          </script>
                                     </form>
                                 </div>
                             </font>
