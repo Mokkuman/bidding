@@ -53,9 +53,15 @@
                                         {% csrf_token %}
                                         <button onclick='foo();' id="add-button" value={{product.id}} type="submit" name="BidProduct">Agregar al carrito!</button>
                                         <script>
-                                            function foo() {
-                                              Swal.fire('Producto agregado al carrito', '', 'success');
-                                            }
+                                            {% if user.is_authenticated %}
+                                                function foo() {
+                                                        Swal.fire('Exito', 'Producto agregado al carrito correctamente', 'success');
+                                                }
+                                            {%else%}
+                                                function foo() {
+                                                    Swal.fire('Hubo un error', 'Debe estar logeado para poder agregar un producto al carrito', 'error');
+                                                }
+                                            {%endif%}
                                           </script>
                                     </form>
                                 </div>
