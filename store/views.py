@@ -25,7 +25,6 @@ def goToBidProduct(request,id_product):
             if theForm.is_valid():
                 userMoney = request.user.money
                 if(theForm.cleaned_data['currentBid'] < 0):
-                    #print("No puedes hacer una puja con dinero negativo ._.")
                     messages.warning(request,"No puedes hacer una puja con dinero negativo")
                 else:
                     user_bid = theForm.cleaned_data['currentBid']
@@ -49,6 +48,8 @@ def goToBidProduct(request,id_product):
                     else:
                         #print("YOU DONT HAVE ENOUGH MONEY OR YOUR BID IS TOO LOW")
                         messages.warning(request,"No tienes suficientes fondos o tu puja es muy baja")
+        product = BidProduct.objects.get(id=id_product)
+        theForm = BidForm(instance=product)
         return render(request, "store/bidProductTemplate.html", {"product" : product, "form":theForm})
     return HttpResponseNotAllowed("Not allowed")
 

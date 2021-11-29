@@ -8,7 +8,6 @@
     {% block title %} Información de orden {% endblock title%}
 
     {% block body %} 
-    {%with product=orderItem.product%}
     <div class="infoContainer">
     <div class="row">
         <div class="col-md-3 register-left my-auto">   
@@ -24,43 +23,19 @@
                             <font style="color:black" align="center">
                         
                             <div class="productDescription">
-                                
                                 <div class="productName">
                                     <h1>{{ product.productName }}</h1>
                                 </div>
-
                                 <div class="description">
                                     <h3>Descripción:</h3>
                                     <p>{{ product.description }}</p>
                                 </div>
-
                                 <div class="price">
-                                    <h3>Precio: {{ orderItem.price }} <h3>
+                                    <h3>A pagar: ${{ product.currentBid }} <h3>
                                 </div>
-
-                                <div class="qty">
-                                    <h3>Cantidad: {{ orderItem.quiantity }} <h3>
+                                <div class="email">
+                                    <h3>Contactar con el vendedor a: {{ product.seller.email }} <h3>
                                 </div>
-
-                                {%if orderItem.shipped%}
-                                <div class="status">
-                                    <h3>Estatus: Enviado!</h3>
-                                </div>
-                                {%else%}
-                                <div class="status">
-                                    <h3>Estatus: Aún no se envía</h3>
-                                    <h3>Enviar a {{orderItem.order.city}} {{orderItem.order.address}}</h3>
-                                    <h3>Número del comprador: {{orderItem.order.phone}}</h3>
-                                    <div class="update">
-                                        <h3>¿El producto ya ha sido enviado?</h3>
-                                        <form method="POST" >
-                                            {% csrf_token %}
-                                            <button id ="add-button" type ="submit" name="shipped">Enviado</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                {%endif%}
-
                             </font>
                         </div>   
                     </div>
@@ -68,5 +43,4 @@
             </div>
         </div>
     </div> 
-    {%endwith%}
     {% endblock body %}

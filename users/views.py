@@ -171,11 +171,15 @@ class UpdateBidGeneral(DetailView):
     def get(self,request, *args, **kwargs):
         try:
             product = BidProduct.objects.get(id=kwargs['id_product'],seller=request.user)
-            data={'productName':product.productName,'description':product.description,
-                'category':product.category,'isActive':product.isActive}
-            self.form_class.initial = data
-            form = self.form_class(initial=data)
-            return render(request,"users/updateMyBidProduct.html",{"form":form,"bid":product})
+            if not product.sold:
+                data={'productName':product.productName,'description':product.description,
+                    'category':product.category,'isActive':product.isActive}
+                self.form_class.initial = data
+                form = self.form_class(initial=data)
+                return render(request,"users/updateMyBidProduct.html",{"form":form,"bid":product})
+            else:
+                email = product.bidWinner.email
+                return render(request,"users/updateMyBidProduct.html",{"bid":product,"email":email})
         except:
             print("No puedes acceder a esta página porque no eres el propietario del producto")
             return HttpResponseNotAllowed("Not allowed")
@@ -222,6 +226,13 @@ class UpdateBidGeneral(DetailView):
         else:
             print("Dentro de cancelar")
             return redirect('users:myProducts')
+        
+def bidOrder(request,id_bid):
+    product = BidProduct.objects.get(id = id_bid)
+    if request.user.id == product.bidWinner.id:
+        return render(request,"users/bidOrder.html",{'product':product})
+    else:
+        return HttpResponseNotAllowed("Not allowed")
         
 @login_required
 def notifications(request):

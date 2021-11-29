@@ -7,7 +7,7 @@
 {% block body %}
     <div class="album py-5 bg-light">
     <div class="container">
-    <div class="pb-3 h5">Compras que has realizado</div>
+    <div class="pb-3 h5">Compras que has realizado, da click en ellos para ver más opciones</div>
             <div class="pb-3 h5"></div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
                 {%for o in order %}
@@ -33,7 +33,7 @@
                         <img class="img-fluid" alt="Responsive image" src="{{product.image.url}}">
                         <div class="card-body">
                             <p class="card-text">
-                                <a class="text-dark text-decoration-none" href="#">{{product.productName}}</a>
+                                <a class="text-dark text-decoration-none" href="http://127.0.0.1:8000/myProducts/{{product.id}}/bidOrder">{{product.productName}}</a>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small class="text-muted">Ganaste la puja con ${{product.currentBid}}</small>

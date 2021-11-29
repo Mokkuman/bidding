@@ -35,15 +35,13 @@ def cartAdd(request):
     if request.POST.get('action')=='post':
         product_id = int(request.POST.get('productid'))
         product = get_object_or_404(StockProduct,id=product_id)
-        if product.inventory > 0:
+        if not request.user.is_authenticated: 
+            return render(request, "store/stockProductTemplate.html", {'product' : product})
+        elif product.inventory > 0:
             cart.add(product=product)
-            #product.inventory-=1 Hacer esto en el checkout
-            #product.save()
             response = JsonResponse({'test':'data'})
-            #print("Compra exitosa!") use JavaScript alert() or some other UI notification
-            messages.success(request,"No puedes ingresar valores negativos")
+            #messages.success(request,"No puedes ingresar valores negativos")
         else:
-            #print("No hay stock!")
             messages.warning(request,"No hay stock!");
             return render(request, "store/stockProductTemplate.html", {'product' : product})
         return response
@@ -134,7 +132,7 @@ def checkoutConfirmation(request):
                 newMessage = f'Su orden con clave: {order.orderKey} ha sido procesado! Puede checar en Mis Compras localizado en el header!'
                 SystemNotification.objects.create(toUser = request.user, message = newMessage)
                 cart.deleteAll()
-                return redirect("users:myProducts")    
+                return redirect("users:myShoppings")    
             else:
                 cart.deleteAll()
                 order.delete()
