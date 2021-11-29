@@ -34,16 +34,16 @@ class Product(models.Model):
 
 
 CONDITION_CHOICES = (
-    ('bad','BAD'),
-    ('good', 'GOOD'),
-    ('like new','LIKE NEW'),
-    ('new','NEW'),
+    ('MALA','MALA'),
+    ('BUENA', 'BUENA'),
+    ('COMO NUEVO','COMO NUEVO'),
+    ('NUEVO','NUEVO'),
 )
 
 class BidProduct(Product):
     currentBid = models.FloatField(blank=True,default=0)
     minBid = models.FloatField(default=0)
-    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default='good')
+    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default='BUENA')
     bidWinner = models.ForeignKey(User,related_name="BidWinner", null=True, on_delete=models.SET_NULL,blank=True)
     #bidWinner = models.OneToOneField(User, related_name="BidWinner", null=True, on_delete=models.SET_NULL, )
     sold = models.BooleanField(default=False)

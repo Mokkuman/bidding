@@ -2,7 +2,7 @@ from django import forms
 from store.models import BidProduct, StockProduct
 
 class BidForm(forms.ModelForm):
-    currentBid = forms.IntegerField(widget=forms.NumberInput(None))
+    currentBid = forms.IntegerField(label="Tu Puja")
     class Meta:
         model = BidProduct
         fields = ['currentBid']
