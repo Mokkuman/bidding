@@ -126,7 +126,7 @@ def checkoutConfirmation(request):
                     request.user.money -=cart.get_price(str(id))
                     request.user.save()
                     seller.money += cart.get_price(str(id))
-                    newMessage = f'Has realizado una venta! Ve más detalles en el apartado de "Mis productos"'
+                    newMessage = f'Ha realizado una venta! Ha vendido x{cart.get_qty(str(id))} del producto {products.productName}. Ve más detalles en el apartado de "Mis productos"'
                     SystemNotification.objects.create(toUser = seller, message = newMessage)
                     seller.save()
                 newMessage = f'Su orden con clave: {order.orderKey} ha sido procesado! Puede checar en Mis Compras localizado en el header!'
