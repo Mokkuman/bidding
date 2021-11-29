@@ -17,56 +17,61 @@
         <div class="col-lg-7 pb-5 pe-lg-5 cart">
             <div class="row">
                 <div class="title">
-                    <h1>Producto</h1>
+                    <h1>Productos</h1>
                 </div>
     
-                <div class="row m-0 bg-light">
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <br>
-                            {%for item in cart%}
-                            {%with product=item.product%}
-                            
-                            <div class="col">
-                                <div><img id="imagen-checkout" src="{{product.image.url}}" alt="imagenProducto"></div>
+                <div class="row m-0 groupProducts">
+                    {%for item in cart%}
+                        {%with product=item.product%}
+                        <div id="rowProduct" class="row border-top border-bottom">
+                            <div class="row main align-items-center">
+                                <div class="col">
+                                    <div><img id="imagen-checkout" src="{{product.image.url}}" alt="imagenProducto"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="row">{{product.productName}}</div>
+                                    <div class="row">Cantidad: {{item.qty}}</div>
+                                    <div class="row">Precio por unidad: {{product.price}}</div>
+                                </div>
                             </div>
-        
-                            <div class="col">
-                                <div class="row">{{product.productName}}</div>
-                                <div class="row">Cantidad: {{item.qty}}</div>
-                                <div class="row">Precio por unidad: {{product.price}}</div>
-                            </div>
-        
-                            {%endwith%}
-                            {%endfor%}
                         </div>
-                    </div>
+                        {%endwith%}
+                    {%endfor%}
                 </div>
-
             </div>
-            
         </div>
         
         <div class="col summary">
             <h1>Informacion de tu orden</h1>
-            <div>{{order.fullName}}</div>
-            <div>{{order.address}}</div>
-            <div>{{order.city}}</div>
-            <div>{{order.phone}}</div>
+            <div class="summaryContent">
+                <div class="items">Nombre: {{order.fullName}}</div>
+                <div class="items">Direccion: {{order.address}}</div>
+                <div class="items">Ciudad: {{order.city}}</div>
+                <div class="items">Telefono: {{order.phone}}</div>
+            </div>
+            <div class="priceBackground">
+                <div class="row">
+                    <div class="totalPriceTag col">
+                        Precio total: 
+                    </div>
+                    <div class="totalPrice col">
+                        {{cart.get_total_price}}
+                    </div>
+                </div>
+            </div>
+            <div class="checkoutButtons">
+                <div class="form">
+                    <form method="POST" action="{% url 'cart:checkoutConfirmation' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button id="submitBtn" type="submit" name="buy">Realizar compra</button>
+                        <button id="submitBtn" type="submit" name="cancel">Cancelar</button>
+                    </form>
+                </div>
+            </div>
         </div>
         
-
-
-        <div>Total: {{cart.get_total_price}}</div>
         
-        <div class="form">
-            <form method="POST" action="{% url 'cart:checkoutConfirmation' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{form.as_p}}
-                <button id="submitBtn" type="submit" name="buy">Realizar compra</button>
-                <button id="submitBtn" type="submit" name="cancel">Cancelar</button>
-            </form>
-        </div>
     </div>
 </div>
 
