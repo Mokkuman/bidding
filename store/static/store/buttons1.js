@@ -6,6 +6,7 @@ function myGeeks() {
     var x4 = document.querySelector("label[for='id_isActive'");
     var x5 = document.querySelector("label[for='id_image'");
     var poop = window.location.pathname;
+
     //alert(poop)
     if(poop == "/products/uploadStockProduct") {
         console.log("Entro");
